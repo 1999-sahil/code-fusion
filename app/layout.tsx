@@ -30,18 +30,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-[#1a1a1a]`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-50 dark:bg-[#1a1a1a]`}
         >
           <ThemeProvider
-        attribute="class"
-        defaultTheme="dark"
-        enableSystem
-      >
-          {children}
-      </ThemeProvider>
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+          >
+            {children}
+          </ThemeProvider>
         </body>
     </html>
   );

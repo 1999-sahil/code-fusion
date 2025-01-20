@@ -1,19 +1,21 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 function Logo() {
   return (
-    <div className='flex items-center gap-1'>
+    <Link href="/" className='flex items-center gap-1.5'>
         <Image
           src="/cf-logo.svg"
           alt="code-fusion-logo"
           width={24}
           height={24}
+          className='max-md:w-[20px] max-md:h-[20px]'
         />
-        <h2 className='font-semibold font-poppins'>
-            code.fusion
+        <h2 className='font-medium font-kanit text-sm md:text-base'>
+          CodeFusion
         </h2>
-    </div>
+    </Link>
   )
 }
 
