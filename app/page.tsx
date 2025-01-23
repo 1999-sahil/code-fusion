@@ -1,62 +1,70 @@
-import Logo from "@/components/logo";
-import { ModeToggle } from "@/components/mode-toggle";
-import Navbar from "@/components/navbar/navbar";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import Link from "next/link";
+import { Terminal } from "lucide-react";
 
+import MainContent from "@/components/main-content";
+import Marquee from "@/components/marquee";
+import Navbar from "@/components/navbar/navbar";
 
 export default function Home() {
   return (
     <div className="md:p-2">
       <Navbar />
-      <ModeToggle />
-      <Logo />
-      <Link href="/blog">
-      <Button>
-        Blog
-      </Button>
-      </Link>
-      <div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium voluptatibus maiores, aut reprehenderit placeat, itaque soluta atque doloremque, quos tempora autem voluptates? Minus, qui obcaecati nesciunt ab reprehenderit atque enim.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ex deleniti totam facere molestias similique perspiciatis reiciendis minima error at quia, laudantium blanditiis possimus! Atque eos officia quaerat provident ad.
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum minus laudantium sed corrupti eum odit perspiciatis est praesentium consequuntur maxime, illum velit veritatis rerum vel impedit? Eum autem nemo nobis?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, delectus officia facilis aliquam quam rerum velit neque iure tempora enim corporis atque est cupiditate vitae corrupti necessitatibus eveniet voluptate. Dolores.
+      <main className="relative overflow-hidden px-2 md:px-4 lg:px-8 flex flex-col items-center my-8 lg:my-12">
+        {/** main banner */}
+        <div className="relative z-10 border w-[98%] lg:w-[84%] pt-8 lg:pt-12 flex flex-col gap-24 bg-gradient-to-tr from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-900">
+          {/** Main Heading with buttons */}
+          <div className="space-y-6 px-3 lg:px-5">
+            <div className="space-y-1">
+              <span className="text-xs lg:text-sm font-semibold font-poppins text-[#00c774]">
+                {"<Code.Fusion />"}
+              </span>
+              <h1 className="text-2xl lg:text-4xl max-w-lg lg:max-w-2xl font-poppins font-medium text-[#111] dark:text-neutral-200">
+                Empowering the new dimension of learning with our comprehensive
+                docs and blogs
+              </h1>
+            </div>
+            <p className="text-sm lg:text-base font-inter max-w-xl lg:max-w-2xl text-neutral-500 dark:text-neutral-400">
+              Codefusion is a <strong>beautiful & robust</strong> documentation
+              to learn <strong>engineering</strong>. Unlocking Potential,
+              Igniting <strong>curiosity</strong>, Explore #Codefusion mdx blogs
+            </p>
+            <div className="space-x-4 w-fit">
+              <button className="text-xs lg:text-sm font-medium font-poppins rounded-full px-4 py-2 text-neutral-100 dark:text-[#333] bg-gradient-to-b from-neutral-800 to-neutral-500 hover:from-neutral-800 hover:to-neutral-800 dark:from-neutral-200 dark:to-neutral-400 dark:hover:from-neutral-200 dark:hover:to-neutral-200">
+                Getting started
+              </button>
+              <button className="text-xs lg:text-sm font-medium font-poppins rounded-full px-4 py-2 shadow-md text-neutral-700 dark:text-neutral-200 bg-gradient-to-b from-neutral-300 to-neutral-100 hover:from-neutral-300 hover:to-neutral-300 dark:from-neutral-800 dark:to-neutral-600 dark:hover:from-neutral-800 dark:hover:to-neutral-800">
+                ⚡️ Docs
+              </button>
+            </div>
+          </div>
 
+          <section className="bg-neutral-50 dark:bg-[#1a1a1a] py-8">
+            {/** marquee motion */}
+            <div className="maskImageGradient pb-20 lg:pb-24 w-full h-full flex items-center justify-center">
+              <Marquee />
+            </div>
 
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium voluptatibus maiores, aut reprehenderit placeat, itaque soluta atque doloremque, quos tempora autem voluptates? Minus, qui obcaecati nesciunt ab reprehenderit atque enim.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ex deleniti totam facere molestias similique perspiciatis reiciendis minima error at quia, laudantium blanditiis possimus! Atque eos officia quaerat provident ad.
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum minus laudantium sed corrupti eum odit perspiciatis est praesentium consequuntur maxime, illum velit veritatis rerum vel impedit? Eum autem nemo nobis?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, delectus officia facilis aliquam quam rerum velit neque iure tempora enim corporis atque est cupiditate vitae corrupti necessitatibus eveniet voluptate. Dolores.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium voluptatibus maiores, aut reprehenderit placeat, itaque soluta atque doloremque, quos tempora autem voluptates? Minus, qui obcaecati nesciunt ab reprehenderit atque enim.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ex deleniti totam facere molestias similique perspiciatis reiciendis minima error at quia, laudantium blanditiis possimus! Atque eos officia quaerat provident ad.
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum minus laudantium sed corrupti eum odit perspiciatis est praesentium consequuntur maxime, illum velit veritatis rerum vel impedit? Eum autem nemo nobis?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, delectus officia facilis aliquam quam rerum velit neque iure tempora enim corporis atque est cupiditate vitae corrupti necessitatibus eveniet voluptate. Dolores.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium voluptatibus maiores, aut reprehenderit placeat, itaque soluta atque doloremque, quos tempora autem voluptates? Minus, qui obcaecati nesciunt ab reprehenderit atque enim.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ex deleniti totam facere molestias similique perspiciatis reiciendis minima error at quia, laudantium blanditiis possimus! Atque eos officia quaerat provident ad.
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum minus laudantium sed corrupti eum odit perspiciatis est praesentium consequuntur maxime, illum velit veritatis rerum vel impedit? Eum autem nemo nobis?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, delectus officia facilis aliquam quam rerum velit neque iure tempora enim corporis atque est cupiditate vitae corrupti necessitatibus eveniet voluptate. Dolores.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium voluptatibus maiores, aut reprehenderit placeat, itaque soluta atque doloremque, quos tempora autem voluptates? Minus, qui obcaecati nesciunt ab reprehenderit atque enim.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ex deleniti totam facere molestias similique perspiciatis reiciendis minima error at quia, laudantium blanditiis possimus! Atque eos officia quaerat provident ad.
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum minus laudantium sed corrupti eum odit perspiciatis est praesentium consequuntur maxime, illum velit veritatis rerum vel impedit? Eum autem nemo nobis?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, delectus officia facilis aliquam quam rerum velit neque iure tempora enim corporis atque est cupiditate vitae corrupti necessitatibus eveniet voluptate. Dolores.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium voluptatibus maiores, aut reprehenderit placeat, itaque soluta atque doloremque, quos tempora autem voluptates? Minus, qui obcaecati nesciunt ab reprehenderit atque enim.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ex deleniti totam facere molestias similique perspiciatis reiciendis minima error at quia, laudantium blanditiis possimus! Atque eos officia quaerat provident ad.
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum minus laudantium sed corrupti eum odit perspiciatis est praesentium consequuntur maxime, illum velit veritatis rerum vel impedit? Eum autem nemo nobis?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, delectus officia facilis aliquam quam rerum velit neque iure tempora enim corporis atque est cupiditate vitae corrupti necessitatibus eveniet voluptate. Dolores.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium voluptatibus maiores, aut reprehenderit placeat, itaque soluta atque doloremque, quos tempora autem voluptates? Minus, qui obcaecati nesciunt ab reprehenderit atque enim.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ex deleniti totam facere molestias similique perspiciatis reiciendis minima error at quia, laudantium blanditiis possimus! Atque eos officia quaerat provident ad.
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum minus laudantium sed corrupti eum odit perspiciatis est praesentium consequuntur maxime, illum velit veritatis rerum vel impedit? Eum autem nemo nobis?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, delectus officia facilis aliquam quam rerum velit neque iure tempora enim corporis atque est cupiditate vitae corrupti necessitatibus eveniet voluptate. Dolores.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium voluptatibus maiores, aut reprehenderit placeat, itaque soluta atque doloremque, quos tempora autem voluptates? Minus, qui obcaecati nesciunt ab reprehenderit atque enim.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ex deleniti totam facere molestias similique perspiciatis reiciendis minima error at quia, laudantium blanditiis possimus! Atque eos officia quaerat provident ad.
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum minus laudantium sed corrupti eum odit perspiciatis est praesentium consequuntur maxime, illum velit veritatis rerum vel impedit? Eum autem nemo nobis?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, delectus officia facilis aliquam quam rerum velit neque iure tempora enim corporis atque est cupiditate vitae corrupti necessitatibus eveniet voluptate. Dolores.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium voluptatibus maiores, aut reprehenderit placeat, itaque soluta atque doloremque, quos tempora autem voluptates? Minus, qui obcaecati nesciunt ab reprehenderit atque enim.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ex deleniti totam facere molestias similique perspiciatis reiciendis minima error at quia, laudantium blanditiis possimus! Atque eos officia quaerat provident ad.
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum minus laudantium sed corrupti eum odit perspiciatis est praesentium consequuntur maxime, illum velit veritatis rerum vel impedit? Eum autem nemo nobis?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, delectus officia facilis aliquam quam rerum velit neque iure tempora enim corporis atque est cupiditate vitae corrupti necessitatibus eveniet voluptate. Dolores.
-      </div>
+            {/** main concepts */}
+            <div className="flex flex-col gap-8 lg:gap-12">
+              <div className="flex items-center justify-center">
+              <h1 className="flex flex-col items-center justify-center text-xl md:text-2xl font-poppins font-medium max-w-md md:max-w-xl text-[#333] dark:text-zinc-200">
+                <Terminal className="md:size-8" />
+                <span>
+                  Start instantly.
+                </span>
+                <span>
+                  Write, Learn and Share your knowledge.
+                </span>
+              </h1>
+              </div>
+              {/** Grid cards */}
+              <MainContent />
+            </div>
+          </section>
+        </div>
+        
+        {/** bg grid lines */}
+        <div className="max-lg:hidden absolute top-10 z-0 w-full h-[300px] bg-neutral-50 dark:bg-[#1a1a1a] bg-[linear-gradient(to_right,#dddddd_1px,transparent_1px),linear-gradient(to_bottom,#dddddd_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#343434_1px,transparent_1px),linear-gradient(to_bottom,#343434_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+      </main>
     </div>
   );
 }
