@@ -9,6 +9,7 @@ import { ModeToggle } from "../mode-toggle";
 import { FaGithub } from "react-icons/fa";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import MobileNav from "./mobile-nav";
+import CFButton from "../cf-button";
 
 function Navbar() {
   const [open, setOpen] = useState<boolean>(false);
@@ -38,11 +39,7 @@ function Navbar() {
             </div>
           </div>
           <div className="hidden md:flex items-center gap-4">
-            <Link href="">
-              <button className="border border-[hsl(155_78%_40%)] hover:opacity-90 bg-[hsl(151_67%_67%)] dark:bg-[hsl(155_100%_19%)] text-[hsl(0_0%_9%)] dark:text-[hsl(0_0%_98%)] rounded-md px-4 py-[2px] text-sm font-mukta">
-                Login
-              </button>
-            </Link>
+            <CFButton href="" text="Login" />
             <div className="flex items-center">
               <ModeToggle />
               <Link

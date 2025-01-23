@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 
@@ -17,6 +17,13 @@ import {
 
 function MainContent() {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // For Hydration Error
+  // Ensure the component renders only after it's mounted on the client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-2">
@@ -57,7 +64,7 @@ function MainContent() {
             </div>
             {/** image */}
             <div className="hidden lg:flex items-center justify-center lg:w-1/2 p-4">
-                {theme === "dark"
+                {mounted && theme === "dark"
                  ? <Image src="/features/dsa-d.svg" alt="" width={300} height={300} />
                  : <Image src="/features/dsa-l.svg" alt="" width={300} height={300} />
                 }
@@ -80,7 +87,7 @@ function MainContent() {
             </div>
             {/** image */}
             <div className="hidden lg:flex items-center justify-center w-full h-full py-6">
-                {theme === "dark"
+                {mounted && theme === "dark"
                  ? <Image src="/features/algo-d.svg" alt="" width={100} height={200} />
                  : <Image src="/features/algo-l.svg" alt="" width={100} height={200} />
                 }
@@ -103,7 +110,7 @@ function MainContent() {
             </div>
             {/** image */}
             <div className="hidden lg:flex items-center justify-center w-full h-full py-6">
-                {theme === "dark"
+                {mounted && theme === "dark"
                  ? <Image src="/features/react-d.svg" alt="" width={120} height={200} />
                  : <Image src="/features/react-l.svg" alt="" width={120} height={200} />
                 }
@@ -126,7 +133,7 @@ function MainContent() {
             </div>
             {/** image */}
             <div className="hidden lg:flex items-center justify-center w-full h-full py-6">
-                {theme === "dark"
+                {mounted && theme === "dark"
                  ? <Image src="/features/ui-d.svg" alt="" width={100} height={200} />
                  : <Image src="/features/ui-l.svg" alt="" width={100} height={200} />
                 }
@@ -149,7 +156,7 @@ function MainContent() {
             </div>
             {/** image */}
             <div className="hidden lg:flex items-center justify-center w-full h-full py-6">
-                {theme === "dark"
+                {mounted && theme === "dark"
                  ? <Image src="/features/back-d.svg" alt="" width={100} height={200} />
                  : <Image src="/features/back-l.svg" alt="" width={100} height={200} />
                 }
@@ -172,7 +179,7 @@ function MainContent() {
             </div>
             {/** image */}
             <div className="hidden lg:flex items-center justify-center w-full h-full py-6">
-                {theme === "dark"
+                {mounted && theme === "dark"
                  ? <Image src="/features/code-d.svg" alt="" width={120} height={200} />
                  : <Image src="/features/code-l.svg" alt="" width={120} height={200} />
                 }
@@ -195,7 +202,7 @@ function MainContent() {
             </div>
             {/** image */}
             <div className="hidden lg:flex items-center justify-center w-full h-full py-6">
-                {theme === "dark"
+                {mounted && theme === "dark"
                  ? <Image src="/features/system-d.svg" alt="" width={100} height={200} />
                  : <Image src="/features/system-l.svg" alt="" width={100} height={200} />
                 }

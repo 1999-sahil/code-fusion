@@ -39,7 +39,7 @@ interface MarqueeProps {
 
 const MarqueeItem = ({ images, from, to}: MarqueeProps) => {
   return (
-    <div className="max-w-sm md:max-w-2xl flex gap-5 items-center marqueeMaskGradient">
+    <div className="max-w-[300px] md:max-w-2xl flex gap-5 items-center marqueeMaskGradient">
       <motion.div
         initial={{ x: `${from}` }}
         animate={{ x: `${to}` }}

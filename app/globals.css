@@ -88,8 +88,3 @@ dark-bg-color: #1a1a1a,
     rgba(0, 0, 0, 0)
   );
 }
-
-.marqueeGradientEffect {
-  mask-image: linear-gradient(to bottom,transparent,white);
-  background-image:linear-gradient(to right, #4ebfff, transparent, #e92a67);
-}
