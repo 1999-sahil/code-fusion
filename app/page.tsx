@@ -3,6 +3,7 @@ import { Terminal } from "lucide-react";
 import MainContent from "@/components/main-content";
 import Marquee from "@/components/marquee";
 import Navbar from "@/components/navbar/navbar";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -37,14 +38,40 @@ export default function Home() {
             </div>
           </div>
 
-          <section className="bg-neutral-50 dark:bg-[#1a1a1a] py-8">
+          <section className="bg-neutral-50 dark:bg-[#1a1a1a]">
+            {/** card */}
+            <div className="pt-8">
+              <div className="flex flex-col items-center justify-center gap-6">
+                <h2 className="text-sm lg:text-base font-medium font-poppins text-neutral-500 dark:text-neutral-400">
+                  Trusted by Codefusion teams and developers
+                </h2>
+                <div className="rounded-lg border max-w-sm lg:max-w-xl flex flex-col gap-4 lg:gap-6 p-4 bg-gradient-to-b from-zinc-200/60 to-zinc-50 dark:from-neutral-800 dark:to-neutral-900">
+                  <h2 className="text-xs lg:text-sm lg:whitespace-nowrap font-medium font-inter text-black dark:text-zinc-200">
+                    {`"A gorgeous documentations that composes beautifully into #CodeFusion blogs."`}
+                  </h2>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-start gap-2">
+                      <Image src="/logo.svg" alt="" width={30} height={30} className="rounded-full p-1 bg-white dark:bg-black" />
+                      <div>
+                        <h2 className="text-xs font-poppins font-medium text-[#111] dark:text-zinc-200">Sahil Ahmed</h2>
+                        <h4 className="text-xs font-mukta font-medium text-zinc-500 dark:text-zinc-400">sahilahmed466@gmail.com</h4>
+                      </div>
+                    </div>
+                    <button className="text-sm font-medium font-mukta rounded-md border px-4 py-1 ring-1 text-[#333] dark:text-zinc-200 ring-zinc-300 dark:ring-zinc-700 bg-zinc-200 dark:bg-zinc-800">
+                      Showcase
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/** marquee motion */}
-            <div className="maskImageGradient pb-20 lg:pb-24 w-full h-full flex items-center justify-center">
+            <div className="relative py-20 lg:py-24 w-full h-full flex items-center justify-center border-b">
               <Marquee />
             </div>
 
             {/** main concepts */}
-            <div className="flex flex-col gap-8 lg:gap-12">
+            <div className="flex flex-col gap-8 lg:gap-12 py-10 lg:py-20">
               <div className="flex items-center justify-center">
               <h1 className="flex flex-col items-center justify-center text-xl md:text-2xl font-poppins font-medium max-w-md md:max-w-xl text-[#333] dark:text-zinc-200">
                 <Terminal className="md:size-8" />
@@ -61,7 +88,7 @@ export default function Home() {
             </div>
           </section>
         </div>
-        
+
         {/** bg grid lines */}
         <div className="max-lg:hidden absolute top-10 z-0 w-full h-[300px] bg-neutral-50 dark:bg-[#1a1a1a] bg-[linear-gradient(to_right,#dddddd_1px,transparent_1px),linear-gradient(to_bottom,#dddddd_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#343434_1px,transparent_1px),linear-gradient(to_bottom,#343434_1px,transparent_1px)] bg-[size:48px_48px]"></div>
       </main>
