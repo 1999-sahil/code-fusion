@@ -26,7 +26,7 @@ function MainContent() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-2">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-2 lg:px-6">
       {/** block-1 (DSA) */}
       <div className="lg:col-span-2 w-full h-full lg:h-[300px] flex items-center justify-center border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-900/80 rounded-lg">
         <div className="flex flex-col lg:flex-row p-4 lg:px-6">

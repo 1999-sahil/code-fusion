@@ -1,9 +1,12 @@
-import { Terminal } from "lucide-react";
+import Image from "next/image";
+import { Hash, Terminal } from "lucide-react";
 
 import MainContent from "@/components/main-content";
 import Marquee from "@/components/marquee";
 import Navbar from "@/components/navbar/navbar";
-import Image from "next/image";
+import CFButton from "@/components/cf-button";
+import Button from "@/components/button";
+import BlogGrid from "@/components/blog-grid";
 
 export default function Home() {
   return (
@@ -51,10 +54,20 @@ export default function Home() {
                   </h2>
                   <div className="flex items-center justify-between">
                     <div className="flex items-start gap-2">
-                      <Image src="/logo.svg" alt="" width={30} height={30} className="rounded-full p-1 bg-white dark:bg-black" />
+                      <Image
+                        src="/logo.svg"
+                        alt=""
+                        width={30}
+                        height={30}
+                        className="rounded-full p-1 bg-white dark:bg-black"
+                      />
                       <div>
-                        <h2 className="text-xs font-poppins font-medium text-[#111] dark:text-zinc-200">Sahil Ahmed</h2>
-                        <h4 className="text-[10px] font-mukta font-medium text-zinc-500 dark:text-zinc-400">sahilahmed466@gmail.com</h4>
+                        <h2 className="text-xs font-poppins font-medium text-[#111] dark:text-zinc-200">
+                          Sahil Ahmed
+                        </h2>
+                        <h4 className="text-[10px] font-mukta font-medium text-zinc-500 dark:text-zinc-400">
+                          sahilahmed466@gmail.com
+                        </h4>
                       </div>
                     </div>
                     <button className="text-xs lg:text-sm font-medium font-mukta rounded-md border px-2 lg:px-4 py-1 ring-1 text-[#333] dark:text-zinc-200 ring-zinc-300 dark:ring-zinc-700 bg-zinc-200 dark:bg-zinc-800">
@@ -72,12 +85,11 @@ export default function Home() {
 
             {/** main concepts */}
             <div className="flex flex-col gap-8 lg:gap-12 py-10 lg:py-20">
+              {/** Heading */}
               <div className="flex items-center justify-center">
                 <h1 className="flex flex-col items-center justify-center text-xl md:text-2xl font-poppins font-medium max-w-md md:max-w-xl text-[#333] dark:text-zinc-200">
                   <Terminal className="md:size-8" />
-                  <span>
-                    Start instantly.
-                  </span>
+                  <span>Start instantly.</span>
                   <span className="text-center">
                     Write, Learn and Share your knowledge.
                   </span>
@@ -85,6 +97,37 @@ export default function Home() {
               </div>
               {/** Grid cards */}
               <MainContent />
+            </div>
+
+            {/** Blogs Grid */}
+            <div className="px-3 lg:px-8 py-10">
+              {/** heading */}
+              <div className="flex flex-col lg:flex-row lg:items-end gap-5 lg:justify-between">
+                <div className="max-w-full lg:max-w-xl space-y-4">
+                  <h4 className="flex items-center ">
+                    <Hash className="text-emerald-500 size-4" />
+                    <span className="text-sm font-normal font-ubuntu text-neutral-600 dark:text-neutral-400">CodeFusion Blogs</span>
+                  </h4>
+                  <h2 className="font-semibold font-inter text-2xl text-start text-[#333] dark:text-neutral-400">
+                    <span className="text-black dark:text-white">
+                      MDX Blogs
+                    </span>{" "}
+                    to enhance and innovate your knowledge with ease.
+                  </h2>
+                  <p className="lg:max-w-lg text-sm lg:text-base font-medium font-inter text-neutral-500 dark:text-neutral-500/90">
+                    See how CodeFusion blogs empowers users for all domain to
+                    accelerate their growth and streamline their work.
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CFButton href="" text="View all blogs" />
+                  <Button href="" text="Go to editor" />
+                </div>
+              </div>
+              {/** blogs */}
+              <div className="pt-12">
+                <BlogGrid />
+              </div>
             </div>
           </section>
         </div>
