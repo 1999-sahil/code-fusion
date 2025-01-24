@@ -7,10 +7,11 @@ import Navbar from "@/components/navbar/navbar";
 import CFButton from "@/components/cf-button";
 import Button from "@/components/button";
 import BlogGrid from "@/components/blog-grid";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
-    <div className="md:p-2">
+    <div className="">
       <Navbar />
       <main className="relative overflow-hidden px-2 md:px-4 lg:px-8 flex flex-col items-center my-8 lg:my-12">
         {/** main banner */}
@@ -135,6 +136,7 @@ export default function Home() {
         {/** bg grid lines */}
         <div className="max-lg:hidden absolute top-10 z-0 w-full h-[300px] bg-neutral-50 dark:bg-[#1a1a1a] bg-[linear-gradient(to_right,#dddddd_1px,transparent_1px),linear-gradient(to_bottom,#dddddd_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#343434_1px,transparent_1px),linear-gradient(to_bottom,#343434_1px,transparent_1px)] bg-[size:48px_48px]"></div>
       </main>
+      <Footer />
     </div>
   );
 }

@@ -26,12 +26,12 @@ function MainContent() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-2 lg:px-6">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 px-2 lg:px-6 lg:gap-5">
       {/** block-1 (DSA) */}
-      <div className="lg:col-span-2 w-full h-full lg:h-[300px] flex items-center justify-center border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-900/80 rounded-lg">
+      <div className="lg:col-span-2 w-full h-full lg:h-[300px] flex items-center justify-center border border-neutral-200 dark:border-neutral-700/50 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-800/50 rounded-lg">
         <div className="flex flex-col lg:flex-row p-4 lg:px-6">
             {/** heading */}
-            <div className="relative flex flex-col gap-2 lg:gap-4 lg:w-1/2">
+            <div className="relative flex flex-col gap-2 lg:gap-4 lg:h-[250px] lg:w-1/2">
                 <div className="flex items-center gap-2 text-black dark:text-white">
                     <Frame className=" size-4" />
                     <h2 className=" font-semibold font-openSans text-base">Data Structure</h2>
@@ -63,17 +63,18 @@ function MainContent() {
                 </div>
             </div>
             {/** image */}
-            <div className="hidden lg:flex items-center justify-center lg:w-1/2 p-4">
+            <div className="hidden relative lg:flex items-center justify-center lg:w-1/2 p-8">
+                <div className="absolute inset-0 h-full w-full bg-white dark:bg-zinc-900/50 bg-[radial-gradient(#a9a9a9_1px,transparent_1px)] dark:bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:12px_12px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
                 {mounted && theme === "dark"
-                 ? <Image src="/features/dsa-d.svg" alt="" width={300} height={300} />
-                 : <Image src="/features/dsa-l.svg" alt="" width={300} height={300} />
+                 ? <Image src="/features/dsa-d.svg" alt="" width={120} height={200} className="z-10 bg-zinc-900/40" />
+                 : <Image src="/features/dsa-l.svg" alt="" width={120} height={200} className="z-10 bg-white" />
                 }
             </div>
         </div>
       </div>
 
       {/** block-2 (algo) */}
-      <div className="w-full h-full lg:h-[300px] border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-900/80 rounded-lg">
+      <div className="w-full h-full lg:h-[300px] border border-neutral-200 dark:border-neutral-700/50 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-800/50 rounded-lg">
         <div className="p-4 lg:py-6 h-full flex flex-col items-center justify-between">
             {/** heading */}
             <div className="flex flex-col gap-2 lg:gap-3">
@@ -86,17 +87,18 @@ function MainContent() {
                 </p>
             </div>
             {/** image */}
-            <div className="hidden lg:flex items-center justify-center w-full h-full py-6">
+            <div className="hidden relative lg:flex items-center justify-center w-full h-full py-6">
+                <div className="absolute inset-0 h-full w-full bg-white dark:bg-zinc-900/50 bg-[radial-gradient(#a9a9a9_1px,transparent_1px)] dark:bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:12px_12px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
                 {mounted && theme === "dark"
-                 ? <Image src="/features/algo-d.svg" alt="" width={100} height={200} />
-                 : <Image src="/features/algo-l.svg" alt="" width={100} height={200} />
+                 ? <Image src="/features/algo-d.svg" alt="" width={80} height={80} className="z-10 bg-zinc-900/40" />
+                 : <Image src="/features/algo-l.svg" alt="" width={80} height={80} className="z-10 bg-white" />
                 }
             </div>
         </div>
       </div>
 
       {/** block-3 (Frontend) */}
-      <div className="w-full h-full lg:h-[300px] border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-900/80 rounded-lg">
+      <div className="w-full h-full lg:h-[300px] border border-neutral-200 dark:border-neutral-700/50 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-800/50 rounded-lg">
         <div className="p-4 lg:py-6 h-full flex flex-col items-center justify-between">
             {/** heading */}
             <div className="flex flex-col gap-2 lg:gap-3">
@@ -109,17 +111,18 @@ function MainContent() {
                 </p>
             </div>
             {/** image */}
-            <div className="hidden lg:flex items-center justify-center w-full h-full py-6">
+            <div className="hidden relative lg:flex items-center justify-center w-full h-full py-6">
+                <div className="absolute inset-0 h-full w-full bg-white dark:bg-zinc-900/50 bg-[radial-gradient(#a9a9a9_1px,transparent_1px)] dark:bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:12px_12px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
                 {mounted && theme === "dark"
-                 ? <Image src="/features/react-d.svg" alt="" width={120} height={200} />
-                 : <Image src="/features/react-l.svg" alt="" width={120} height={200} />
+                 ? <Image src="/features/react-d.svg" alt="" width={80} height={80} className="z-10 bg-zinc-900/40" />
+                 : <Image src="/features/react-l.svg" alt="" width={80} height={80} className="z-10 bg-white" />
                 }
             </div>
         </div>
       </div>
 
       {/** block-4 (UI) */}
-      <div className="w-full h-full lg:h-[300px] border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-900/80 rounded-lg">
+      <div className="w-full h-full lg:h-[300px] border border-neutral-200 dark:border-neutral-700/50 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-800/50 rounded-lg">
         <div className="p-4 lg:py-6 h-full flex flex-col items-center justify-between">
             {/** heading */}
             <div className="flex flex-col gap-2 lg:gap-3">
@@ -132,17 +135,18 @@ function MainContent() {
                 </p>
             </div>
             {/** image */}
-            <div className="hidden lg:flex items-center justify-center w-full h-full py-6">
+            <div className="hidden relative lg:flex items-center justify-center w-full h-full py-6">
+                <div className="absolute inset-0 h-full w-full bg-white dark:bg-zinc-900/50 bg-[radial-gradient(#a9a9a9_1px,transparent_1px)] dark:bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:12px_12px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
                 {mounted && theme === "dark"
-                 ? <Image src="/features/ui-d.svg" alt="" width={100} height={200} />
-                 : <Image src="/features/ui-l.svg" alt="" width={100} height={200} />
+                 ? <Image src="/features/ui-d.svg" alt="" width={80} height={80} className="z-10" />
+                 : <Image src="/features/ui-d.svg" alt="" width={80} height={80} className="z-10" />
                 }
             </div>
         </div>
       </div>
 
       {/** block-5 (backend) */}
-      <div className="w-full h-full lg:h-[300px] border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-900/80 rounded-lg">
+      <div className="w-full h-full lg:h-[300px] border border-neutral-200 dark:border-neutral-700/50 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-800/50 rounded-lg">
         <div className="p-4 lg:py-6 h-full flex flex-col items-center justify-between">
             {/** heading */}
             <div className="flex flex-col gap-2 lg:gap-3">
@@ -155,17 +159,18 @@ function MainContent() {
                 </p>
             </div>
             {/** image */}
-            <div className="hidden lg:flex items-center justify-center w-full h-full py-6">
+            <div className="hidden relative lg:flex items-center justify-center w-full h-full py-6">
+                <div className="absolute inset-0 h-full w-full bg-white dark:bg-zinc-900/50 bg-[radial-gradient(#a9a9a9_1px,transparent_1px)] dark:bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:12px_12px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
                 {mounted && theme === "dark"
-                 ? <Image src="/features/back-d.svg" alt="" width={100} height={200} />
-                 : <Image src="/features/back-l.svg" alt="" width={100} height={200} />
+                 ? <Image src="/features/back-d.svg" alt="" width={80} height={80} className="z-10 bg-zinc-900/40" />
+                 : <Image src="/features/back-l.svg" alt="" width={80} height={80} className="z-10 bg-white" />
                 }
             </div>
         </div>
       </div>
 
       {/** block-6 (programming) */}
-      <div className="w-full h-full lg:h-[300px] border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-900/80 rounded-lg">
+      <div className="w-full h-full lg:h-[300px] border border-neutral-200 dark:border-neutral-700/50 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-800/50 rounded-lg">
         <div className="p-4 lg:py-6 h-full flex flex-col items-center justify-between">
             {/** heading */}
             <div className="flex flex-col gap-2 lg:gap-3">
@@ -178,17 +183,18 @@ function MainContent() {
                 </p>
             </div>
             {/** image */}
-            <div className="hidden lg:flex items-center justify-center w-full h-full py-6">
+            <div className="hidden relative lg:flex items-center justify-center w-full h-full py-6">
+                <div className="absolute inset-0 h-full w-full bg-white dark:bg-zinc-900/50 bg-[radial-gradient(#a9a9a9_1px,transparent_1px)] dark:bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:12px_12px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
                 {mounted && theme === "dark"
-                 ? <Image src="/features/code-d.svg" alt="" width={120} height={200} />
-                 : <Image src="/features/code-l.svg" alt="" width={120} height={200} />
+                 ? <Image src="/features/code-d.svg" alt="" width={80} height={80} className="z-10 bg-zinc-900/40" />
+                 : <Image src="/features/code-l.svg" alt="" width={80} height={80} className="z-10 bg-white" />
                 }
             </div>
         </div>
       </div>
 
       {/** block-7 (system design) */}
-      <div className="w-full h-full lg:h-[300px] border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-900/80 rounded-lg">
+      <div className="w-full h-full lg:h-[300px] border border-neutral-200 dark:border-neutral-700/50 hover:border-neutral-400 dark:hover:border-neutral-700 bg-white dark:bg-neutral-800/50 rounded-lg">
         <div className="p-4 lg:py-6 h-full flex flex-col items-center justify-between">
             {/** heading */}
             <div className="flex flex-col gap-2 lg:gap-3">
@@ -201,10 +207,11 @@ function MainContent() {
                 </p>
             </div>
             {/** image */}
-            <div className="hidden lg:flex items-center justify-center w-full h-full py-6">
+            <div className="hidden relative lg:flex items-center justify-center w-full h-full py-6">
+                <div className="absolute inset-0 h-full w-full bg-white dark:bg-zinc-900/50 bg-[radial-gradient(#a9a9a9_1px,transparent_1px)] dark:bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:12px_12px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
                 {mounted && theme === "dark"
-                 ? <Image src="/features/system-d.svg" alt="" width={100} height={200} />
-                 : <Image src="/features/system-l.svg" alt="" width={100} height={200} />
+                 ? <Image src="/features/system-d.svg" alt="" width={80} height={80} className="z-10 bg-zinc-900/40" />
+                 : <Image src="/features/system-l.svg" alt="" width={80} height={80} className="z-10 bg-white" />
                 }
             </div>
         </div>

@@ -21,7 +21,7 @@ function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <nav className={`p-3 md:p-2 md:px-4 border-b md:border md:rounded-2xl sticky backdrop-blur top-1 md:top-2 shadow-sm z-50`}>
+      <nav className={`p-3 md:mx-2 md:p-2 md:px-4 border-b md:border md:rounded-2xl sticky backdrop-blur top-1 md:top-2 shadow-sm z-50`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
             <Logo />
