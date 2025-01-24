@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Hash, Terminal } from "lucide-react";
+import { ArrowRight, Hash, Terminal } from "lucide-react";
 
 import MainContent from "@/components/main-content";
 import Marquee from "@/components/marquee";
@@ -8,6 +8,8 @@ import CFButton from "@/components/cf-button";
 import Button from "@/components/button";
 import BlogGrid from "@/components/blog-grid";
 import Footer from "@/components/footer";
+import TopicsGrid from "@/components/topics-grid";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -32,13 +34,23 @@ export default function Home() {
               to learn <strong>engineering</strong>. Unlocking Potential,
               Igniting <strong>curiosity</strong>, Explore #Codefusion mdx blogs
             </p>
-            <div className="space-x-4 w-fit">
-              <button className="text-xs lg:text-sm font-medium font-poppins rounded-full px-4 py-2 text-neutral-100 dark:text-[#333] bg-gradient-to-b from-neutral-800 to-neutral-500 hover:from-neutral-800 hover:to-neutral-800 dark:from-neutral-200 dark:to-neutral-400 dark:hover:from-neutral-200 dark:hover:to-neutral-200">
-                Getting started
-              </button>
-              <button className="text-xs lg:text-sm font-medium font-poppins rounded-full px-4 py-2 shadow-md text-neutral-700 dark:text-neutral-200 bg-gradient-to-b from-neutral-300 to-neutral-100 hover:from-neutral-300 hover:to-neutral-300 dark:from-neutral-800 dark:to-neutral-600 dark:hover:from-neutral-800 dark:hover:to-neutral-800">
-                ⚡️ Docs
-              </button>
+            <div className="w-full flex items-center gap-3 lg:gap-5">
+              <Link href="">
+                <button className="text-xs lg:text-sm font-medium font-poppins rounded-full px-4 py-2 text-neutral-100 dark:text-[#333] bg-gradient-to-b from-neutral-800 to-neutral-500 hover:from-neutral-800 hover:to-neutral-800 dark:from-neutral-200 dark:to-neutral-400 dark:hover:from-neutral-200 dark:hover:to-neutral-200">
+                  Getting started
+                </button>
+              </Link>
+              <Link href="">
+                <button className="text-xs lg:text-sm font-medium font-poppins rounded-full px-4 py-2 shadow-md text-neutral-700 dark:text-neutral-200 bg-gradient-to-b from-neutral-300 to-neutral-100 hover:from-neutral-300 hover:to-neutral-300 dark:from-neutral-800 dark:to-neutral-600 dark:hover:from-neutral-800 dark:hover:to-neutral-800">
+                  ⚡️ Docs
+                </button>
+              </Link>
+              <Link href="">
+                <button className="flex items-center gap-1 text-xs lg:text-sm font-medium font-poppins rounded-full px-4 py-2 shadow-md border border-[hsl(155_78%_40%)] hover:opacity-90 bg-[hsl(151_67%_67%)] dark:bg-[hsl(155_100%_19%)] text-[hsl(0_0%_9%)] dark:text-[hsl(0_0%_98%)]">
+                  <ArrowRight className="size-4" />
+                  CF Blogs
+                </button>
+              </Link>
             </div>
           </div>
 
@@ -101,7 +113,7 @@ export default function Home() {
             </div>
 
             {/** Blogs Grid */}
-            <div className="px-3 lg:px-8 py-10">
+            <div className="px-3 lg:px-8 py-10 my-5">
               {/** heading */}
               <div className="flex flex-col lg:flex-row lg:items-end gap-5 lg:justify-between">
                 <div className="max-w-full lg:max-w-xl space-y-4">
@@ -130,12 +142,24 @@ export default function Home() {
                 <BlogGrid />
               </div>
             </div>
+
+            {/** topics */}
+            <div className="py-8 my-5">
+              <TopicsGrid />
+            </div>
           </section>
         </div>
 
         {/** bg grid lines */}
         <div className="max-lg:hidden absolute top-10 z-0 w-full h-[300px] bg-neutral-50 dark:bg-[#1a1a1a] bg-[linear-gradient(to_right,#dddddd_1px,transparent_1px),linear-gradient(to_bottom,#dddddd_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#343434_1px,transparent_1px),linear-gradient(to_bottom,#343434_1px,transparent_1px)] bg-[size:48px_48px]"></div>
       </main>
+
+      {/** member button */}
+      <div className="flex items-center justify-center my-8 py-8">
+        <button className="rounded-full border border-neutral-600 dark:border-neutral-400 text-[#333] dark:text-neutral-400 hover:text-emerald-600 dark:hover:text-emerald-600 px-5 py-3 lg:px-7 lg:py-5 font-medium text-sm font-raleway hover:ring-2 hover:ring-emerald-300 dark:hover:ring-emerald-600">
+          Become a member
+        </button>
+      </div>
       <Footer />
     </div>
   );
