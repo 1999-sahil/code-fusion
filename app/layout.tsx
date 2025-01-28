@@ -5,6 +5,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { baseUrl } from "@/lib/metadata";
 import SessionProvider from "@/components/session-provider";
+import Navbar from "@/components/navbar/navbar";
+import Footer from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,7 +43,11 @@ export default function RootLayout({
             defaultTheme="dark"
             enableSystem
           >
-            {children}
+            <Navbar />
+            <main className="w-full min-h-screen">
+              {children}
+            </main>
+            <Footer />
           </ThemeProvider>
           <SessionProvider />
         </body>

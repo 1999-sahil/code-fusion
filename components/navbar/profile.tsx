@@ -16,10 +16,12 @@ function Profile() {
   const setUser = useUser((state) => state.setUser);
   const supabase = createClient();
   
-    const handleLogout = async () => {
-      await supabase.auth.signOut();
-      setUser(undefined);
-    };
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setUser(undefined);
+  };
+
+  const isAdmin = user?.user_metadata?.role === "admin";
 
   return (
     <Popover>
@@ -37,12 +39,14 @@ function Profile() {
           <p className="text-sm font-inter font-medium text-[#111] dark:text-neutral-200">{user?.user_metadata?.user_name}</p>
           <p className="text-xs font-mukta text-[#333] dark:text-neutral-400">{user?.user_metadata?.email}</p>
         </div>
-        <Link href="/dashboard" className="block">
-          <Button size="sm" variant="ghost" className="w-full flex items-center justify-between text-sm font-mukta">
-            Dashboard
-            <LayoutDashboardIcon className="size-4" />
-          </Button>
-        </Link>
+        {isAdmin && (
+          <Link href="/dashboard" className="block">
+            <Button size="sm" variant="ghost" className="w-full flex items-center justify-between text-sm font-mukta">
+              Dashboard
+              <LayoutDashboardIcon className="size-4" />
+            </Button>
+          </Link>
+        )}
         <Button onClick={handleLogout} size="sm" variant="ghost" className="w-full flex items-center justify-between text-sm font-mukta">
           Logout
           <LockOpen className="size-4" />

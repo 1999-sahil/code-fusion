@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight, Hash, Terminal } from "lucide-react";
+import { Hash, Terminal } from "lucide-react";
 
 import MainContent from "@/components/main-content";
 import Marquee from "@/components/marquee";
@@ -7,14 +7,12 @@ import Navbar from "@/components/navbar/navbar";
 import CFButton from "@/components/cf-button";
 import Button from "@/components/button";
 import BlogGrid from "@/components/blog-grid";
-import Footer from "@/components/footer";
 import TopicsGrid from "@/components/topics-grid";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="">
-      <Navbar />
       <main className="relative overflow-hidden px-2 md:px-4 lg:px-8 flex flex-col items-center my-8 lg:my-12">
         {/** main banner */}
         <div className="relative z-10 border w-[98%] lg:w-[84%] pt-8 lg:pt-12 flex flex-col gap-24 bg-gradient-to-tr from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-900">
@@ -46,9 +44,8 @@ export default function Home() {
                 </button>
               </Link>
               <Link href="">
-                <button className="flex items-center gap-1 text-xs lg:text-sm font-medium font-poppins rounded-full px-4 py-2 shadow-md border border-[hsl(155_78%_40%)] hover:opacity-90 bg-[hsl(151_67%_67%)] dark:bg-[hsl(155_100%_19%)] text-[hsl(0_0%_9%)] dark:text-[hsl(0_0%_98%)]">
-                  <ArrowRight className="size-4" />
-                  CF Blogs
+                <button className="text-xs lg:text-sm font-medium font-poppins rounded-full px-4 py-2 shadow-md border border-[hsl(155_78%_40%)] hover:opacity-90 bg-[hsl(151_67%_67%)] dark:bg-[hsl(155_100%_19%)] text-[hsl(0_0%_9%)] dark:text-[hsl(0_0%_98%)]">
+                  🚀 CF Blogs
                 </button>
               </Link>
             </div>
@@ -133,8 +130,12 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <CFButton href="" text="View all blogs" />
-                  <Button href="" text="Go to editor" />
+                  <Link href="">
+                    <CFButton text="View all blogs" />
+                  </Link>
+                  <Link href="">
+                    <Button text="Go to editor" />
+                  </Link>
                 </div>
               </div>
               {/** blogs */}
@@ -160,7 +161,6 @@ export default function Home() {
           Become a member
         </button>
       </div>
-      <Footer />
     </div>
   );
 }
