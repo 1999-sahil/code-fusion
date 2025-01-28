@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { baseUrl } from "@/lib/metadata";
+import SessionProvider from "@/components/session-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +43,7 @@ export default function RootLayout({
           >
             {children}
           </ThemeProvider>
+          <SessionProvider />
         </body>
     </html>
   );
