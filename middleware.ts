@@ -2,7 +2,7 @@ import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
-  console.log("Middleware triggered for:", request.url);
+  //console.log("Middleware triggered for:", request.url);
   let response = NextResponse.next();
 
   const supabase = createServerClient(
@@ -35,21 +35,21 @@ export async function middleware(request: NextRequest) {
   const { data, error } = await supabase.auth.getSession();
 
   if (error) {
-    console.error("Error fetching session:", error);
+    //console.error("Error fetching session:", error);
     return NextResponse.redirect(new URL("/", request.url));
   }
 
   if (data?.session) {
-    console.log("Session user metadata:", data.session.user.user_metadata);
+    //console.log("Session user metadata:", data.session.user.user_metadata);
 
     if (data.session.user.user_metadata.role !== "admin") {
       console.warn("Unauthorized access attempt:", data.session.user.id);
       return NextResponse.redirect(new URL("/", request.url));
     }
 
-    console.log("Authorized admin access.");
+    //console.log("Authorized admin access.");
   } else {
-    console.warn("No session found, redirecting.");
+    //console.warn("No session found, redirecting.");
     return NextResponse.redirect(new URL("/", request.url));
   }
 
