@@ -9,10 +9,12 @@ import Button from "@/components/button";
 import BlogGrid from "@/components/blog-grid";
 import TopicsGrid from "@/components/topics-grid";
 import Link from "next/link";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
     <div className="">
+      <Navbar />
       <main className="relative overflow-hidden px-2 md:px-4 lg:px-8 flex flex-col items-center my-8 lg:my-12">
         {/** main banner */}
         <div className="relative z-10 border w-[98%] lg:w-[84%] pt-8 lg:pt-12 flex flex-col gap-24 bg-gradient-to-tr from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-900">
@@ -161,6 +163,7 @@ export default function Home() {
           Become a member
         </button>
       </div>
+      <Footer />
     </div>
   );
 }

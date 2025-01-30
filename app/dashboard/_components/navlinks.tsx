@@ -1,61 +1,79 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
+import React, { useState } from "react";
+import Link from "next/link";
 
-import { cn } from '@/lib/utils';
-import { Filter, Grid2x2, Search, UserRoundSearch } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import { ChevronsUpDown, Search } from "lucide-react";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+
 
 function Navlinks() {
   const pathname = usePathname();
+  const [selectedText, setSelectedText] = useState("Dashboard");
 
   const links = [
     {
-        href: "/dashboard",
-        text: "dashboard",
-        Icon: Grid2x2,
+      href: "/dashboard",
+      text: "dashboard",
     },
     {
-        href: "/dashboard/user",
-        text: "all user",
-        Icon: UserRoundSearch,
+      href: "/dashboard/user",
+      text: "user",
     },
   ];
 
+  // Get the option that is NOT currently selected
+  const availableOption = links.find((link) => link.text !== selectedText);
+
   return (
-    <div className='flex items-center w-full justify-between'>
-        <div className='ring-1 ring-neutral-200 dark:ring-neutral-700/70 border rounded-md flex items-center p-[2px] gap-1'>
-        {links.map((link, index) => (
-            <Link
-              href={link.href}
-              key={index}
-              className={cn(
-                "flex items-center gap-1 transition-all capitalize text-xs font-inter font-medium text-[#333] dark:text-neutral-300 hover:border rounded-md px-3 py-2",
-                {"bg-neutral-200 dark:bg-neutral-700/70 text-black dark:text-white border" : pathname === link.href}
-              )}
+    <div className="flex items-center justify-between px-4 py-6 lg:px-6 lg:py-6">
+      {/* Dynamic Heading */}
+      <h2 className="text-lg md:text-xl font-medium font-inter capitalize">{selectedText}</h2>
+
+      {/* Dropdown Menu */}
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button className="flex items-center justify-between text-xs ring-1 ring-neutral-300 dark:ring-neutral-700 rounded-md py-1 px-3 w-[180px] md:w-[220px] bg-neutral-100 dark:bg-neutral-800 hover:ring-neutral-500 dark:hover:ring-neutral-600">
+            <h2 className="font-medium font-inter">
+              <span className=" text-neutral-500 dark:text-neutral-400">select: </span>
+              {selectedText}
+            </h2>
+            <ChevronsUpDown className="size-3 text-neutral-500" />
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="center" className="w-[180px] md:w-[220px] dark:bg-neutral-800">
+          <DropdownMenuLabel className="flex items-center gap-2 text-xs font-mukta text-neutral-500 font-normal">
+            <Search className="size-3" />
+            Search here...
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          {availableOption && (
+            <DropdownMenuItem
+              onClick={() => setSelectedText(availableOption.text)}
+              className="cursor-pointer text-xs font-mukta font-medium text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200/70 dark:hover:bg-neutral-700/50"
             >
-                <link.Icon className='size-4' />
-                {link.text}
-            </Link>
-        ))}
+              <Link href={availableOption.href} legacyBehavior>
+                <a className="w-full block">
+                  {availableOption.text}
+                </a>
+              </Link>
+            </DropdownMenuItem>
+          )}
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
-    <div className='flex items-center gap-2'>
-        <div className='hidden lg:block relative w-full'>
-            <input
-              type='text'
-              placeholder='Find a blog using title...'
-              className='w-[300px] pl-6 border-none outline-none rounded-md py-2 text-xs font-mukta ring-1 ring-neutral-300 dark:ring-neutral-700/70 bg-neutral-100 dark:bg-neutral-800 text-[#333] dark:text-neutral-300'
-            />
-            <Search className='absolute top-[10px] left-2 size-3 text-[#333] dark:text-neutral-400' />
-        </div>
-        <div className='flex items-center gap-2 ring-1 ring-neutral-300 dark:ring-neutral-700/70 bg-neutral-100 dark:bg-neutral-800 rounded-md px-4 py-2 text-[#333] dark:text-neutral-300'>
-            <Filter className='size-3 lg:size-4' />
-            <h2 className='text-xs font-inter font-medium'>Filter</h2>
-        </div>
-    </div>
-    </div>
-  )
+  );
 }
 
-export default Navlinks
+export default Navlinks;
