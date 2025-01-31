@@ -7,8 +7,11 @@ import { ChevronLeft } from 'lucide-react'
 import { BlogFormSchemaType } from '../../schema'
 import { toast } from '@/hooks/use-toast'
 import { createBlog } from '@/lib/actions/blog'
+import { useRouter } from 'next/navigation'
 
 function CreateForm() {
+  const router = useRouter();
+
   const handleCreate = async (data: BlogFormSchemaType) => {
     const blog = await createBlog(data);
     const { error } = JSON.parse(blog);
@@ -34,7 +37,8 @@ function CreateForm() {
             </code>
           </pre>
         ),
-      })
+      });
+      router.push("/dashboard");
     }
   };
 
