@@ -43,7 +43,7 @@ function Navbar() {
           </div>
           <div className="hidden md:flex items-center gap-4">
             {user?.id ? <Profile /> : <Login />}
-            <div className="flex items-center">
+            <div className="flex items-center gap-2">
               <ModeToggle />
               <Link
                 href="/"
@@ -55,7 +55,7 @@ function Navbar() {
           </div>
           <div className="md:hidden">
             <div className="flex items-center gap-1">
-            {user?.id ? <Profile /> : <Login />}
+              {user?.id ? <Profile /> : <Login />}
               <ModeToggle />
               <div
                 className="hover:bg-accent hover:text-accent-foreground p-1 rounded-md"

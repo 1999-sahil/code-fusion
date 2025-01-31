@@ -31,7 +31,7 @@ function Profile() {
           alt={user?.user_metadata.user_name}
           width={35}
           height={35}
-          className="max-md:w-[30px] max-md:h-[30px] ring-1 ring-neutral-300 hover:ring-neutral-400 dark:ring-neutral-700 dark:hover:ring-neutral-600 p-[2px] rounded-full cursor-pointer"
+          className="max-md:w-[30px] max-md:h-[30px] mr-2 lg:mr-1 ring-1 ring-neutral-300 hover:ring-neutral-400 dark:ring-neutral-700 dark:hover:ring-neutral-600 p-[2px] rounded-full cursor-pointer"
         />
       </PopoverTrigger>
       <PopoverContent className="">

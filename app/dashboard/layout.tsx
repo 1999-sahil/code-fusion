@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import Navlinks from "./_components/navlinks";
 import Navbar from "./_components/navbar";
 import MobileNav from "./_components/mobile-nav";
+import Footer from "./_components/footer";
 
 export default function layout({ children }: { children: ReactNode }) {
     return (
@@ -15,6 +16,7 @@ export default function layout({ children }: { children: ReactNode }) {
               <Navlinks />
               {children}
             </div>
+            <Footer />
         </div>
     )
 }
