@@ -2,6 +2,9 @@
 
 import { BlogFormSchemaType } from "@/app/dashboard/schema";
 import { createSupabaseServerClient } from "@/utils/supabase";
+import { revalidatePath } from "next/cache";
+
+const DASHBOARD = "/dashboard";
 
 // create blog and save it to database
 export async function createBlog(data: BlogFormSchemaType) {
@@ -37,4 +40,19 @@ export async function readBlog() {
     .from("blog")
     .select("*")
     .order("created_at", { ascending: true });
+}
+
+
+// delete blog by ID on clicking delete button
+export async function deleteBlogById(blogId: string) {
+  const supabase = await createSupabaseServerClient();
+
+  const result = await supabase
+    .from("blog")
+    .delete()
+    .eq("id", blogId);
+
+  revalidatePath(DASHBOARD);
+
+  return JSON.stringify(result);
 }

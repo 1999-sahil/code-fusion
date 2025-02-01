@@ -35,7 +35,7 @@ async function BlogTable() {
               </h1>
               <Switch checked={blog.is_premium} />
               <Switch checked={blog.is_published} />
-              <Actions />
+              <Actions id={blog.id} />
             </div>
           )
         })}
