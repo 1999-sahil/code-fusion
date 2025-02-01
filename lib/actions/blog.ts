@@ -56,3 +56,17 @@ export async function deleteBlogById(blogId: string) {
 
   return JSON.stringify(result);
 }
+
+// update switch toggle by ID (premium, publish)
+export async function updateBlogById(blogId: string, data: BlogFormSchemaType) {
+  const supabase = await createSupabaseServerClient();
+
+  const result = await supabase
+    .from("blog")
+    .update(data)
+    .eq("id", blogId);
+
+  revalidatePath(DASHBOARD);
+
+  return JSON.stringify(result);
+}
