@@ -1,44 +1,40 @@
 "use server";
 
 import { BlogFormSchemaType } from "@/app/dashboard/schema";
-import { Database } from "@/database.types";
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
+import { createSupabaseServerClient } from "@/utils/supabase";
 
+// create blog and save it to database
 export async function createBlog(data: BlogFormSchemaType) {
-    const cookieStore = await cookies()
+  const { ["content"]: excludeKey, ...blog } = data;
 
-    const supabase = createServerClient<Database>(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!, 
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-        {
-            cookies: {
-              get(name: string) {
-                return cookieStore.get(name)?.value;
-              }
-            },
-        }
-    );
+  const supabase =  await createSupabaseServerClient();
 
-    const { ["content"]: excludeKey, ...blog } = data;
+  const blogResult = await supabase
+    .from("blog")
+    .insert(blog)
+    .select("id")
+    .single();
 
-    const blogResult = await supabase
-        .from("blog")
-        .insert(blog)
-        .select("id")
-        .single();
+  if (blogResult.error?.message) {
+    return JSON.stringify(blogResult);
+  } else {
+    const result = await supabase.from("blog_content").insert({
+      blog_id: blogResult?.data?.id!,
+      content: data.content,
+    });
 
-    if (blogResult.error?.message) {
-        return JSON.stringify(blogResult);
-    } else {
-        const result = await supabase
-            .from("blog_content")
-            .insert({ 
-                blog_id: blogResult?.data?.id!,
-                content: data.content, 
-            });
+    // re-validate
+    return JSON.stringify(result);
+  }
+}
 
-        // re-validate
-        return JSON.stringify(result);
-    }
+
+// read blogs from database and fill it to blog-table
+export async function readBlog() {
+  const supabase =  await createSupabaseServerClient();
+
+  return supabase
+    .from("blog")
+    .select("*")
+    .order("created_at", { ascending: true });
 }
