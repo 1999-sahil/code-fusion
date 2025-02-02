@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react'
+import Link from 'next/link'
 
 import {
   DropdownMenu,
@@ -8,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { EllipsisVertical, Eye, FilePenLine, Trash } from 'lucide-react'
+import { EllipsisVertical, Eye, FilePenLine } from 'lucide-react'
 import DeleteAlert from './delete-alert'
 
 function Actions({ id }: { id: string }) {
@@ -19,15 +20,17 @@ function Actions({ id }: { id: string }) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="center" className=' dark:bg-neutral-800'>
         <DropdownMenuItem className='flex items-center gap-2 text-xs font-kanit cursor-pointer text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:text-neutral-100 dark:hover:bg-neutral-700/50'>
-          <FilePenLine className='size-3' />
-          Edit
+          <Link href={"/dashboard/blog/edit/" + id} className='flex items-center gap-2'>
+            <FilePenLine className='size-3' />
+            Edit
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className='flex items-center gap-2 text-xs font-kanit cursor-pointer text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:text-neutral-100 dark:hover:bg-neutral-700/50'>
           <Eye className='size-3' />
           View
         </DropdownMenuItem>
         <DropdownMenuItem onSelect={(e) => e.preventDefault()} className='flex items-center gap-2 text-xs font-kanit cursor-pointer text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:text-neutral-100 dark:hover:bg-neutral-700/50'>
-            <DeleteAlert blogId={id} />
+          <DeleteAlert blogId={id} />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

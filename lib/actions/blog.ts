@@ -2,7 +2,7 @@
 
 import { BlogFormSchemaType } from "@/app/dashboard/schema";
 import { createSupabaseServerClient } from "@/utils/supabase";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, unstable_noStore } from "next/cache";
 
 const DASHBOARD = "/dashboard";
 
@@ -69,4 +69,41 @@ export async function updateBlogById(blogId: string, data: BlogFormSchemaType) {
   revalidatePath(DASHBOARD);
 
   return JSON.stringify(result);
+}
+
+// edit blog by ID
+export async function editBlogById(blogId: string) {
+  unstable_noStore();
+  const supabase = await createSupabaseServerClient();
+
+  return supabase
+    .from("blog")
+    .select("*, blog_content(*)")
+    .eq("id", blogId)
+    .single();
+
+}
+
+// function to edit blog details when call from edit-from
+export async function updateBlogDetailsById(blogId: string, data: BlogFormSchemaType) {
+  const supabase = await createSupabaseServerClient();
+
+  const { ["content"]: excludeKey, ...blog } = data;
+
+  const resultBlog = await supabase
+    .from("blog")
+    .update(blog)
+    .eq("id", blogId);
+
+  if (resultBlog.error) {
+    return JSON.stringify(resultBlog);
+  } else {
+    const result = await supabase
+      .from("blog_content")
+      .update({ content: data.content })
+      .eq("blog_id", blogId);
+    
+    revalidatePath(DASHBOARD);
+    return JSON.stringify(result);
+  }
 }

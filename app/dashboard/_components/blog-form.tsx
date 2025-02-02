@@ -22,11 +22,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import { IBlogDetail } from "@/lib/types"
 
 export default function BlogForm({
   onHandleSubmit,
+  blog,
 } : {
   onHandleSubmit: (data: BlogFormSchemaType) => void;
+  blog?: IBlogDetail;
 }) {
   const [isPreview, setIsPreview] = useState(false);
 
@@ -37,11 +40,11 @@ export default function BlogForm({
     mode: "all",
     resolver: zodResolver(BlogFormSchema),
     defaultValues: {
-      title: "",
-      image_url: "",
-      content: "",
-      is_published: true,
-      is_premium: false,
+      title: blog?.title || "",
+      image_url: blog?.image_url || "",
+      content: blog?.blog_content?.content || "",
+      is_premium: blog?.is_premium || false,
+      is_published: blog?.is_published || true,
     },
   })
 
