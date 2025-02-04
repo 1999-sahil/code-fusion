@@ -314,7 +314,26 @@ export default function BlogForm({
             )}
           />
 
-          <Button type="submit">Submit</Button>
+          {/** save button */}
+          <div className="flex items-center gap-1">
+              {isPending ? (
+                <button
+                disabled={!form.formState.isValid}
+                className="flex items-center gap-2 px-3 py-1 rounded-md text-xs font-medium font-inter ring-1 ring-[hsl(155_78%_40%)] hover:opacity-90 bg-[hsl(151_67%_67%)] dark:bg-[hsl(155_100%_19%)] text-[hsl(0_0%_9%)] dark:text-[hsl(0_0%_98%)]"
+              >
+                <LoaderCircle className="size-4 animate-spin" />
+                Saving
+              </button>
+              ) : (
+              <button
+                disabled={!form.formState.isValid}
+                className="flex items-center gap-2 px-3 py-1 rounded-md text-xs font-medium font-inter ring-1 ring-[hsl(155_78%_40%)] hover:opacity-90 bg-[hsl(151_67%_67%)] dark:bg-[hsl(155_100%_19%)] text-[hsl(0_0%_9%)] dark:text-[hsl(0_0%_98%)]"
+              >
+                <Save className="size-4" />
+                Save
+              </button>
+              )}
+            </div>
         </div>
       </form>
     </Form>

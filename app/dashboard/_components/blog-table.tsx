@@ -1,14 +1,14 @@
 import React from "react";
 
 import Actions from "./actions";
-import { readBlog, updateBlogById } from "@/lib/actions/blog";
+import { readBlogAdmin, updateBlogById } from "@/lib/actions/blog";
 
 import { Table2 } from "lucide-react";
 import SwitchForm from "./switch-form";
 import { BlogFormSchemaType } from "../schema";
 
 async function BlogTable() {
-  const { data: blogs } = await readBlog();
+  const { data: blogs } = await readBlogAdmin();
 
   return (
     <div className="my-7 mx-5">

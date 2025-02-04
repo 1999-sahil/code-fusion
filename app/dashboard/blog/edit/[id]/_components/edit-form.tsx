@@ -22,7 +22,7 @@ function EditForm({ blog }: { blog: IBlogDetail }) {
         toast({
           title: "Failed to update the blog. Please try again.",
           description: (
-            <pre className="mt-2 w-[340px] rounded-md border border-rose-300 bg-rose-200 dark:border-rose-600 dark:bg-rose-800 p-4">
+            <pre className="mt-2 text-wrap overflow-hidden w-[340px] rounded-md border border-rose-300 bg-rose-200 dark:border-rose-600 dark:bg-rose-800 p-4">
               <code className="text-white">
                 {data.title}
               </code>
@@ -32,13 +32,6 @@ function EditForm({ blog }: { blog: IBlogDetail }) {
       } else {
         toast({
           title: "Blog post updated successfully!",
-          description: (
-            <pre className="mt-2 w-[340px] rounded-md border border-[hsl(155_78%_40%)] bg-[hsl(151_67%_67%)] dark:bg-[hsl(155_100%_19%)] p-4">
-              <code className="text-black dark:text-neutral-200 font-mono font-medium">
-                {JSON.stringify(data.title, null, 2)}
-              </code>
-            </pre>
-          ),
         });
         router.push("/dashboard");
       }

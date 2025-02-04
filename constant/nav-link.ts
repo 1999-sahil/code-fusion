@@ -15,7 +15,7 @@ export const navLinks = [
     },
     {
         title: "CF Blog",
-        href: "/blog"
+        href: "/journals"
     },
 ];
 
@@ -38,6 +38,6 @@ export const mobileNavLinks = [
     {
         icon: Blocks,
         title: "CF Blog",
-        href: "/blog",
+        href: "/journals",
     },
 ];

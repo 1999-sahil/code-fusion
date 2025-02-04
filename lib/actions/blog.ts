@@ -26,14 +26,25 @@ export async function createBlog(data: BlogFormSchemaType) {
       content: data.content,
     });
 
-    // re-validate
+    revalidatePath(DASHBOARD);
     return JSON.stringify(result);
   }
 }
 
 
-// read blogs from database and fill it to blog-table
+// for both (USERS and ADMIN) read blogs from database and show it to the blog (journal) home page
 export async function readBlog() {
+  const supabase =  await createSupabaseServerClient();
+
+  return supabase
+    .from("blog")
+    .select("*")
+    .eq("is_published", true)  // user will see only published articles
+    .order("created_at", { ascending: true });
+}
+
+// for ADMIN: read blogs from database and fill it to blog-table
+export async function readBlogAdmin() {
   const supabase =  await createSupabaseServerClient();
 
   return supabase

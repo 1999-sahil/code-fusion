@@ -16,7 +16,8 @@ export default {
 			openSans: ["Open Sans", "serif"],
 			poppins: ["Poppins", "serif"],
 			raleway: ["Raleway", "serif"],
-			ubuntu: ["Ubuntu Condensed", "serif"]
+			ubuntu: ["Ubuntu Condensed", "serif"],
+			outfit: ["Outfit", "serif"]
 		},
 		backgroundImage: {
 			"gradient-dark":
