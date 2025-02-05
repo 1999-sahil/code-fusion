@@ -78,6 +78,7 @@ export async function updateBlogById(blogId: string, data: BlogFormSchemaType) {
     .eq("id", blogId);
 
   revalidatePath(DASHBOARD);
+  revalidatePath("/blog/" + blogId);
 
   return JSON.stringify(result);
 }
@@ -115,6 +116,7 @@ export async function updateBlogDetailsById(blogId: string, data: BlogFormSchema
       .eq("blog_id", blogId);
     
     revalidatePath(DASHBOARD);
+    revalidatePath("/blog/" + blogId);  // revalidate so that we can see the updated blog on that route
     return JSON.stringify(result);
   }
 }

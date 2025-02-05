@@ -1,10 +1,15 @@
+import { File } from "lucide-react";
 import { FaJava } from "react-icons/fa";
-import { SiJavascript, SiPython, SiReact, SiTypescript } from "react-icons/si";
+import { RiJavascriptFill } from "react-icons/ri";
+import { SiPython, SiReact, SiTailwindcss } from "react-icons/si";
+import { BiLogoTypescript } from "react-icons/bi"
 
 export const icons = {
-    js: SiJavascript,
+    js: RiJavascriptFill,
     react: SiReact,
-    ts: SiTypescript,
+    ts: BiLogoTypescript,
     py: SiPython,
-    java: FaJava
+    java: FaJava,
+    css: File,
+    tailwind: SiTailwindcss
 };

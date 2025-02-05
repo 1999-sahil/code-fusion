@@ -75,7 +75,7 @@ async function Journals() {
                   <div className="flex justify-between">
                     <div className="relative w-full h-[90px]">
                       <Link
-                        href={"/journals/blog/" + blog.id}
+                        href={"/blog/" + blog.id}
                         className="w-[68%] hover:underline"
                       >
                         <span className="font-outfit text-[20px] md:text-[24px] font-bold leading-3 lg:leading-5 text-[#242424] dark:text-neutral-100">

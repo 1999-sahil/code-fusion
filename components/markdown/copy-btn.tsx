@@ -30,7 +30,7 @@ function CopyButton({ id }: CopyButtonProps) {
     >
       <Check
         className={cn(
-            'cursor-pointer transition-all size-4 text-emerald-500',
+            'cursor-pointer transition-all size-5 text-emerald-500',
             onDone ? 'scale-100' : 'scale-0'
         )}
         onTransitionEnd={() => {
@@ -44,7 +44,7 @@ function CopyButton({ id }: CopyButtonProps) {
       <div className='h-full w-full absolute top-0 left-0 flex items-center justify-center'>
         <Copy
           className={cn(
-            "transition-all size-3 cursor-pointer text-neutral-500 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-400",
+            "transition-all size-4 cursor-pointer text-neutral-600 hover:text-[#333] dark:text-neutral-200 dark:hover:text-white",
             onCopy ? "scale-0" : "scale-100"
           )}
           onTransitionEnd={() => {
