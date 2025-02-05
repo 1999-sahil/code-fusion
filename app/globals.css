@@ -88,3 +88,50 @@ dark-bg-color: #1a1a1a,
     rgba(0, 0, 0, 0)
   );
 }
+
+/* Apply hyphen before list item content only in unordered lists */
+.custom-ul > li::before {
+  content: "-";
+  position: absolute;
+  left: 0;
+  color: #899499; /* You can change the color as needed */
+}
+
+/* Dark theme hyphen color */
+.dark .custom-ul > li::before {
+  color: #71797e; /* Dark theme color, you can change this */
+}
+
+
+/* Style numbers in ordered lists */
+.custom-ol {
+  counter-reset: list-counter; /* Reset the counter at the start */
+}
+
+.custom-ol li {
+  counter-increment: list-counter; /* Increment the counter for each li */
+}
+
+.custom-ol li::before {
+  content: counter(list-counter); /* Display the number followed by a dot */
+  color: #899499; /* Customize the color of the numbers */
+  font-weight: bold; /* Customize font weight for numbers */
+  font-size: 10px; /* Customize font size for numbers */
+  margin-left: -1.5rem; /* Adjust number position */
+  border: #d3d3d3;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  background-color: white;
+  padding: 3px 6px 3px 6px;
+  margin-right: 8px;
+}
+
+.dark .custom-ol > li::before {
+  border: #414341;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #2a2b2a;
+  color: #626462;
+}

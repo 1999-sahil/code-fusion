@@ -2,16 +2,17 @@ import React from "react";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+
 import "highlight.js/styles/atom-one-dark.min.css";
 
 import { cn } from "@/lib/utils";
 import { icons } from "@/lib/icons";
 
 import CopyButton from "./copy-btn";
-import { FaLinkedin, FaSquareXTwitter, FaYCombinator } from "react-icons/fa6";
-import { RiHome3Line } from "react-icons/ri";
 import { PiTerminalFill } from "react-icons/pi";
-import { ArrowRight } from "lucide-react";
+import { Link2 } from "lucide-react";
 
 interface MarkdownPreviewProps {
   content: string;
@@ -22,9 +23,10 @@ function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
   return (
     <>
       <Markdown
-        rehypePlugins={[rehypeHighlight]}
+        rehypePlugins={[rehypeHighlight, rehypeRaw]}
+        remarkPlugins={[remarkGfm]}
         className={cn(
-          "space-y-6 text-sm lg:text-[1rem] font-inter font-normal dark:text-[hsl(0,1%,71%)] text-[hsl(0_0%_32%)] w-full max-md:min-w-full max-w-[80%] leading-5 lg:leading-6 rounded-lg",
+          "space-y-6 lg:space-y-8 text-[14px] lg:text-[1rem] font-inter font-normal dark:text-[hsl(0,1%,67%)] text-[hsl(0,0%,27%)] w-full max-md:min-w-full max-w-[80%] leading-5 lg:leading-6 rounded-lg",
           className
         )}
         components={{
@@ -52,6 +54,51 @@ function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
               />
             );
           },
+          blockquote: ({ node, ...props }) => (
+            <blockquote {...props} className="border-l-4 border-neutral-300 dark:border-neutral-700 pl-4 text-[#111] dark:text-neutral-100 font-mono text-sm font-medium" />
+          ),
+          ul: ({ node, ...props }) => (
+            <ul {...props} className="list-none custom-ul" />
+          ),
+          ol: ({ node, ...props }) => (
+            <ol {...props} className="list-none custom-ol" />
+          ),
+          li: ({ node, ...props }) => (
+            <li
+              {...props}
+              className="relative pl-5 my-4"
+            />
+          ),
+          em: ({ node, ...props }) => (
+            <em {...props} className="italic font-inter text-neutral-500 dark:text-neutral-200" />
+          ),
+          strong: ({ node, ...props }) => (
+            <strong {...props} className="font-bold font-inter text-[#333] dark:text-neutral-200" />
+          ),
+          table: ({ node, ...props }) => (
+            <table {...props} className="border-collapse border border-gray-300 dark:border-gray-600 w-full" />
+          ),
+          thead: ({ node, ...props }) => (
+            <thead {...props} className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100" />
+          ),
+          tbody: ({ node, ...props }) => (
+            <tbody {...props} className="text-gray-700 dark:text-gray-300" />
+          ),
+          tr: ({ node, ...props }) => (
+            <tr {...props} className="border-b border-gray-300 dark:border-gray-600" />
+          ),
+          th: ({ node, ...props }) => (
+            <th {...props} className="p-2 border border-gray-300 dark:border-gray-600 text-left font-medium" />
+          ),
+          td: ({ node, ...props }) => (
+            <td {...props} className="p-2 border border-gray-300 dark:border-gray-600" />
+          ),
+          a: ({ node, href, ...props }) => (
+            <Link href={href || "#"} {...props} className="text-[#111] dark:text-neutral-50 underline underline-offset-2 decoration-neutral-500 dark:decoration-neutral-500 hover:decoration-black dark:hover:decoration-white font-inter" />
+          ),
+          img: ({ node, ...props }) => (
+            <img {...props} className="rounded-lg m-auto w-full h-full border dark:border-neutral-700/50 p-1 my-6 lg:my-10" alt="" />
+          ),
           code: ({ node, className, children, ...props }) => {
             const match = /language-(\w+)/.exec(className || "");
 
@@ -94,7 +141,7 @@ function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
               );
             } else {
               return (
-                <code className="bg-neutral-800 rounded-lg">{children}</code>
+                <code className="bg-neutral-100 dark:bg-neutral-800/50 border-neutral-200/60 dark:border-neutral-700/20 text-gray-400 rounded-lg border">{children}</code>
               );
             }
           },
@@ -102,35 +149,6 @@ function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
       >
         {content}
       </Markdown>
-
-      <div className="w-full max-md:min-w-full max-w-[80%] h-[1px] bg-neutral-200 dark:bg-neutral-700/50"></div>
-
-      {/** social icons and home page btn */}
-      <div className="space-y-12 w-full max-md:min-w-full max-w-[80%]">
-        <div className="dark:text-neutral-500 text-neutral-600 space-y-3">
-          <h2 className="font-poppins text-xs">Share this article</h2>
-          <div className="flex items-center gap-2 text-lg lg:text-xl">
-            <FaSquareXTwitter className="dark:hover:text-white hover:text-black" />
-            <FaLinkedin className="dark:hover:text-white hover:text-black" />
-            <FaYCombinator className="dark:hover:text-white hover:text-black" />
-          </div>
-        </div>
-
-        <div className="w-full">
-          <Link href="/journals" className="w-full">
-            <button className="w-full flex flex-col gap-3 border rounded-md py-7 px-4 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800/50">
-              <span className="font-mukta text-sm flex items-center gap-1 text-[hsl(155_78%_40%)]">
-                <RiHome3Line className="size-4" />
-                Home
-              </span>
-              <span className="font-outfit text-lg flex items-center justify-between w-full">
-                Go to Journals/Articles Home
-                <ArrowRight className="dark:text-neutral-400 text-neutral-600 size-5" />
-              </span>
-            </button>
-          </Link>
-        </div>
-      </div>
     </>
   );
 }

@@ -35,7 +35,7 @@ async function page({ params }: { params: { id: string } }) {
       </div>
 
       {/** blog */}
-      <div className="w-full space-y-5 md:space-y-7 pb-5 px-4">
+      <div className="w-full space-y-5 md:space-y-7 pb-5 px-5">
         <span className="text-[hsl(151_67%_67%)] dark:text-[hsl(155_78%_40%)] font-medium font-outfit">
           Blog
         </span>
