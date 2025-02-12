@@ -1,18 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import { readBlog } from "@/lib/actions/blog";
 import { cn } from "@/lib/utils";
 import { categories } from "@/constant/category";
-import { Filter, LoaderCircle } from "lucide-react";
 
 import Categories from "../_components/categories";
-import AdCard from "../_components/ad-card";
-import Topics from "../_components/topics";
-import Follow from "../_components/follow";
 import Blogs from "../_components/blogs";
 import Search from "../_components/search";
+
+import { Filter, LoaderCircle } from "lucide-react";
 import { TbMenu } from "react-icons/tb";
 
 function Journals() {
@@ -21,6 +19,7 @@ function Journals() {
   const [blogs, setBlogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchBlog, setSearchBlog] = useState("");
 
   useEffect(() => {
     async function fetchBlogs() {
@@ -44,6 +43,13 @@ function Journals() {
     fetchBlogs();
   }, []);
 
+  // 🔍 Filter blogs based on search term
+  const filteredBlogs = useMemo(() => {
+    return blogs.filter((blog) =>
+      blog.title.toLowerCase().includes(searchBlog.toLowerCase())
+    );
+  }, [blogs, searchBlog]);
+
   if (loading)
     return (
       <p className="w-full h-screen py-10 md:py-20 text-sm flex items-start justify-center font-inter m-auto gap-2">
@@ -66,7 +72,10 @@ function Journals() {
               </div>
             </div>
             <div className="flex items-center gap-2 w-full min-w-full max-w-full">
-              <Search />
+              <Search
+                value={searchBlog}
+                onChange={setSearchBlog}
+              />
               <div className="border border-zinc-300 dark:border-zinc-700 bg-neutral-200 dark:bg-neutral-800 h-full flex items-center justify-center p-2 rounded-md">
                 <TbMenu className=' text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-white cursor-pointer' />
               </div>
@@ -91,7 +100,10 @@ function Journals() {
               ))}
             </div>
             <div className="flex items-center gap-2 w-full max-w-[300px]">
-              <Search />
+              <Search
+                value={searchBlog}
+                onChange={setSearchBlog}
+              />
               <div className="border border-zinc-300 dark:border-zinc-700 bg-neutral-200 dark:bg-neutral-800 h-full flex items-center justify-center p-2 rounded-md">
                 <TbMenu className=' text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-white cursor-pointer' />
               </div>
@@ -99,7 +111,7 @@ function Journals() {
           </div>
         </div>
 
-        <Blogs blogs={blogs} />
+        <Blogs blogs={filteredBlogs} />
       </div>
 
       <div className="flex items-center justify-center my-8 py-8">

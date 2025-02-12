@@ -45,11 +45,11 @@ function Blogs({ blogs }: BlogProps) {
               </span>
               <span className="">
                 {blog.is_premium ? (
-                  <p className="w-fit text-[hsl(155_78%_40%)] font-medium text-xs font-mono flex items-center gap-1">
+                  <p className="w-fit rounded-md px-1.5 py-[2px] ring-1 ring-emerald-400 dark:ring-emerald-500 bg-emerald-200 dark:bg-emerald-800 text-emerald-700 dark:text-emerald-100 font-medium text-xs font-mono flex items-center gap-1">
                     <IndianRupee className="size-3" /> Premium
                   </p>
                 ) : (
-                  <p className="w-fit border border-neutral-300 dark:border-neutral-700 bg-neutral-100 hover:bg-neutral-200/60 hover:border-neutral-400 dark:hover:border-neutral-600 dark:bg-neutral-800 text-[hsl(0_0%_9%)] dark:text-[hsl(0_0%_98%)] rounded-md px-1 py-[2px] text-xs font-mono">
+                  <p className="w-fit border border-neutral-300 dark:border-neutral-700 bg-neutral-200/60 hover:border-neutral-400 dark:hover:border-neutral-600 dark:bg-neutral-800 text-[hsl(0_0%_9%)] dark:text-[hsl(0_0%_98%)] rounded-md px-1 py-[2px] text-xs font-mono">
                     Free
                   </p>
                 )}
