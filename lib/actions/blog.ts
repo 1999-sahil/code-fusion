@@ -39,7 +39,7 @@ export async function readBlog() {
   return supabase
     .from("blog")
     .select("*")
-    .eq("is_published", true)  // user will see only published articles
+    //.eq("is_published", true)  // user will see only published articles
     .order("created_at", { ascending: true });
 }
 

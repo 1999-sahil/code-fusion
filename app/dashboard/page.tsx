@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { Filter, ListFilter, Plus, RefreshCcw, Search } from "lucide-react";
+import { BookOpen, Filter, ListFilter, Plus, Search } from "lucide-react";
 import BlogTable from "./_components/blog-table";
 
 function Dashboard() {
@@ -32,10 +32,12 @@ function Dashboard() {
             <ListFilter className="size-3 dark:text-neutral-300 text-neutral-700" />
           </div>
           <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-4 py-1 rounded-md text-xs font-medium font-inter bg-white dark:bg-neutral-800 hover:bg-neutral-100 text-neutral-600 dark:text-neutral-300 ring-1 ring-neutral-300 dark:ring-neutral-700 hover:ring-neutral-400 dark:hover:ring-neutral-600">
-            <RefreshCcw className="size-3" />
-            Refresh
-          </button>
+          <Link href="/journals">
+            <button className="flex items-center gap-2 px-4 py-1 rounded-md text-xs font-medium font-inter bg-white dark:bg-neutral-800 hover:bg-neutral-100 text-neutral-600 dark:text-neutral-300 ring-1 ring-neutral-300 dark:ring-neutral-700 hover:ring-neutral-400 dark:hover:ring-neutral-600">
+              <BookOpen className="size-3" />
+              Journals
+            </button>
+          </Link>
           <Link href="/dashboard/blog/create">
             <button className="flex items-center gap-2 px-4 py-1 rounded-md text-xs font-medium font-inter ring-1 ring-[hsl(155_78%_40%)] hover:opacity-90 bg-[hsl(151_67%_67%)] dark:bg-[hsl(155_100%_19%)] text-[hsl(0_0%_9%)] dark:text-[hsl(0_0%_98%)]">
               <Plus className="size-3" />

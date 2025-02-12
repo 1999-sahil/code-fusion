@@ -42,7 +42,7 @@ async function BlogTable() {
               <h1 className="col-span-2 hidden md:flex font-mono text-xs text-neutral-600 dark:text-neutral-400">
                 {blog.id}
               </h1>
-              <h1 className="col-span-2 font-inter text-sm text-neutral-600 dark:text-neutral-300">
+              <h1 className="col-span-2 lg:pr-2 font-inter text-sm text-neutral-600 dark:text-neutral-300">
                 {blog.title}
               </h1>
               <SwitchForm

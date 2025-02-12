@@ -1,50 +1,87 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+"use client";
 
-import { format } from "date-fns";
+import React, { useEffect, useState } from "react";
 
 import { readBlog } from "@/lib/actions/blog";
 import { cn } from "@/lib/utils";
 import { categories } from "@/constant/category";
-import { PiStarFourFill } from "react-icons/pi";
-import {
-  BookMarked,
-  CircleMinus,
-  Ellipsis,
-  Filter,
-  ThumbsUp,
-} from "lucide-react";
+import { Filter, LoaderCircle } from "lucide-react";
+
 import Categories from "../_components/categories";
 import AdCard from "../_components/ad-card";
 import Topics from "../_components/topics";
 import Follow from "../_components/follow";
+import Blogs from "../_components/blogs";
+import Search from "../_components/search";
+import { TbMenu } from "react-icons/tb";
 
-async function Journals() {
-  const { data: blogs } = await readBlog();
+function Journals() {
+  //const { data: blogs } = await readBlog();
+
+  const [blogs, setBlogs] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchBlogs() {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const { data, error } = await readBlog();
+        if (error) {
+          setError(error.message);
+        } else {
+          setBlogs(data || []);
+        }
+      } catch (err) {
+        setError("Failed to fetch blogs");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchBlogs();
+  }, []);
+
+  if (loading)
+    return (
+      <p className="w-full h-screen py-10 md:py-20 text-sm flex items-start justify-center font-inter m-auto gap-2">
+        <LoaderCircle className="animate-spin size-4" />
+        Please wait. Loading...
+      </p>
+    );
+  if (error) return <p className="text-red-500 min-h-screen w-full flex items-center justify-center">{error}</p>;
 
   return (
-    <div className="my-8">
-      <div className="flex w-full">
-        {/** main dynamic blog content */}
-        <div className="w-full lg:w-[70%] min-h-screen space-y-10 px-3 md:px-8">
-          {/** categories */}
-          <div>
-            <div className="lg:hidden flex items-center justify-between">
-                <Categories />
-                <div className="border dark:border-neutral-700/50 rounded-md p-1">
-                  <Filter className="size-4 text-[hsl(155_78%_40%)]" />
-                </div>
+    <div className="px-3 lg:py-3">
+      <div className="w-full h-full space-y-6">
+        {/** search bar */}
+        <div>
+          <div className="lg:hidden px-3 space-y-3">
+            <div className="flex items-center justify-between">
+              <Categories />
+              <div className="border dark:border-neutral-700/50 rounded-md p-1">
+                <Filter className="size-4 text-[hsl(155_78%_40%)]" />
+              </div>
             </div>
-            <div className="hidden lg:flex items-center gap-2">
+            <div className="flex items-center gap-2 w-full min-w-full max-w-full">
+              <Search />
+              <div className="border border-zinc-300 dark:border-zinc-700 bg-neutral-200 dark:bg-neutral-800 h-full flex items-center justify-center p-2 rounded-md">
+                <TbMenu className=' text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-white cursor-pointer' />
+              </div>
+            </div>
+          </div>
+          <div className="hidden lg:flex items-center justify-between px-3">
+            <div className="flex items-center gap-2">
               {categories.map((category, index) => (
                 <div
                   key={index}
                   className={cn(
                     "border dark:border-neutral-700/90 rounded-full px-3 py-[2px]",
                     category === "all"
-                      ? "bg-neutral-300 dark:bg-neutral-700"
-                      : "bg-transparent"
+                      ? "bg-neutral-300 dark:bg-neutral-700/60 dark:border-neutral-600"
+                      : "bg-transparent dark:bg-neutral-900"
                   )}
                 >
                   <span className="text-xs capitalize font-medium">
@@ -53,79 +90,16 @@ async function Journals() {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/** blogs */}
-          <div className="space-y-10">
-            {blogs?.map((blog, index) => {
-              const date = format(blog.created_at, "MMMM dd, yyyy hh:mm a");
-
-              return (
-                <div
-                  key={index}
-                  className="pb-4 md:pb-6 border-b border-neutral-200 dark:border-neutral-700/50"
-                >
-                  {/** date */}
-                  <div className="flex items-center gap-2 mb-2 text-xs font-inter text-neutral-600 dark:text-neutral-400">
-                    <PiStarFourFill className="text-emerald-600" />
-                    {date}
-                  </div>
-
-                  {/** title and image */}
-                  <div className="flex justify-between">
-                    <div className="relative w-full h-[90px]">
-                      <Link
-                        href={"/blog/" + blog.id}
-                        className="w-[68%] hover:underline"
-                      >
-                        <span className="font-outfit text-[20px] md:text-[24px] font-bold leading-3 lg:leading-5 text-[#242424] dark:text-neutral-100">
-                          {blog.title}
-                        </span>
-                      </Link>
-
-                      {/** Icons */}
-                      <div className="absolute bottom-0 w-full">
-                        <div className="flex items-center justify-between pr-3 text-neutral-500">
-                          <div className="flex items-center gap-3">
-                            <ThumbsUp className="size-4" />
-                            <BookMarked className="size-4" />
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <CircleMinus className="size-4" />
-                            <Ellipsis className="size-4" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/** Image */}
-                    <div className="w-[30%] h-[90px] flex items-start justify-end">
-                      <div className="w-[100px] md:w-[140px] h-[68px] md:h-[80px] relative">
-                        <Image
-                          src={blog.image_url}
-                          alt={blog.title}
-                          fill
-                          className="object-cover rounded"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            <div className="flex items-center gap-2 w-full max-w-[300px]">
+              <Search />
+              <div className="border border-zinc-300 dark:border-zinc-700 bg-neutral-200 dark:bg-neutral-800 h-full flex items-center justify-center p-2 rounded-md">
+                <TbMenu className=' text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-white cursor-pointer' />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="min-h-screen w-[1px] bg-neutral-200 dark:bg-neutral-700/50 mx-2 hidden lg:flex"></div>
-
-        {/** right static content */}
-        <div className="w-[30%] hidden lg:flex min-h-screen px-5">
-          <div className="w-full space-y-10">
-            <Follow />
-            <Topics />
-            <AdCard />
-          </div>
-        </div>
+        <Blogs blogs={blogs} />
       </div>
 
       <div className="flex items-center justify-center my-8 py-8">
