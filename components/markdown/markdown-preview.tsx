@@ -12,7 +12,6 @@ import { icons } from "@/lib/icons";
 
 import CopyButton from "./copy-btn";
 import { PiTerminalFill } from "react-icons/pi";
-import { Link2 } from "lucide-react";
 
 interface MarkdownPreviewProps {
   content: string;
@@ -76,22 +75,22 @@ function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
             <strong {...props} className="font-bold font-inter text-[#333] dark:text-neutral-200" />
           ),
           table: ({ node, ...props }) => (
-            <table {...props} className="border-collapse border border-gray-300 dark:border-gray-600 w-full" />
+            <table {...props} className="border-separate border-spacing-1 border border-neutral-300 dark:border-neutral-700 rounded-md w-full overflow-hidden" />
           ),
           thead: ({ node, ...props }) => (
-            <thead {...props} className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100" />
+            <thead {...props} className="bg-neutral-200/50 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 rounded" />
           ),
           tbody: ({ node, ...props }) => (
-            <tbody {...props} className="text-gray-700 dark:text-gray-300" />
+            <tbody {...props} className="text-gray-700 dark:text-gray-300 bg-transparent" />
           ),
           tr: ({ node, ...props }) => (
-            <tr {...props} className="border-b border-gray-300 dark:border-gray-600" />
+            <tr {...props} className="border-b border-neutral-300 dark:border-neutral-700" />
           ),
           th: ({ node, ...props }) => (
-            <th {...props} className="p-2 border border-gray-300 dark:border-gray-600 text-left font-medium" />
+            <th {...props} className="py-2 px-4 rounded font-raleway text-left text-xs border border-neutral-300 dark:border-neutral-700 font-medium" />
           ),
           td: ({ node, ...props }) => (
-            <td {...props} className="p-2 border border-gray-300 dark:border-gray-600" />
+            <td {...props} className="py-2 px-4 rounded text-sm font-inter text-[#111] dark:text-neutral-100 border border-neutral-300 dark:border-neutral-700" />
           ),
           a: ({ node, href, ...props }) => (
             <Link href={href || "#"} {...props} className="text-[#111] dark:text-neutral-50 underline underline-offset-2 decoration-neutral-500 dark:decoration-neutral-500 hover:decoration-black dark:hover:decoration-white font-inter" />
