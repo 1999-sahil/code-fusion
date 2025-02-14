@@ -33,14 +33,15 @@ export async function createBlog(data: BlogFormSchemaType) {
 
 
 // for both (USERS and ADMIN) read blogs from database and show it to the blog (journal) home page
-export async function readBlog() {
+export async function readBlog(offset = 0, limit = 15) {
   const supabase =  await createSupabaseServerClient();
 
   return supabase
     .from("blog")
     .select("*")
     //.eq("is_published", true)  // user will see only published articles
-    .order("created_at", { ascending: true });
+    .order("created_at", { ascending: true })
+    .range(offset, offset + limit - 1);
 }
 
 // for ADMIN: read blogs from database and fill it to blog-table
