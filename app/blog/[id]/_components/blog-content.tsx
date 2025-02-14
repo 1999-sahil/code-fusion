@@ -10,8 +10,11 @@ import MarkdownPreview from "@/components/markdown/markdown-preview";
 import { FaLinkedin, FaSquareXTwitter, FaYCombinator } from "react-icons/fa6";
 import { RiHome3Line } from "react-icons/ri";
 import { ArrowRight } from "lucide-react";
+import BlogLoading from "./blog-loading";
 
 function BlogContent({ blogId }: { blogId: string }) {
+  const [isLoading, setIsLoading] = useState(true);
+
   const [blog, setBlog] = useState<{
     blog_id: string;
     content: string;
@@ -31,11 +34,16 @@ function BlogContent({ blogId }: { blogId: string }) {
       .single();
 
     setBlog(data);
+    setIsLoading(false);
   };
 
   useEffect(() => {
     readBlogContent();
   }, []);
+
+  if (isLoading) {
+    return <BlogLoading />
+  }
 
   return (
     <>
