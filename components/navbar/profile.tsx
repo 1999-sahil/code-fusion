@@ -10,15 +10,18 @@ import Link from "next/link";
 import { LayoutDashboardIcon, LockOpen } from "lucide-react";
 import { Button } from "../ui/button";
 import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 function Profile() {
   const user = useUser((state) => state.user);
   const setUser = useUser((state) => state.setUser);
   const supabase = createClient();
+  const router = useRouter();
   
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setUser(undefined);
+    router.push("/")
   };
 
   const isAdmin = user?.user_metadata?.role === "admin";
@@ -34,20 +37,20 @@ function Profile() {
           className="max-md:w-[30px] max-md:h-[30px] mr-2 lg:mr-1 ring-1 ring-neutral-300 hover:ring-neutral-400 dark:ring-neutral-700 dark:hover:ring-neutral-600 p-[2px] rounded-full cursor-pointer"
         />
       </PopoverTrigger>
-      <PopoverContent className="">
+      <PopoverContent className="dark:bg-neutral-800 border dark:border-neutral-700">
         <div className="mb-2">
           <p className="text-sm font-inter font-medium text-[#111] dark:text-neutral-200">{user?.user_metadata?.user_name}</p>
           <p className="text-xs font-mukta text-[#333] dark:text-neutral-400">{user?.user_metadata?.email}</p>
         </div>
         {isAdmin && (
           <Link href="/dashboard" className="block">
-            <Button size="sm" variant="ghost" className="w-full flex items-center justify-between text-sm font-mukta">
+            <Button size="sm" variant="ghost" className="w-full flex items-center justify-between text-sm font-mukta dark:hover:bg-neutral-700/50">
               Dashboard
               <LayoutDashboardIcon className="size-4" />
             </Button>
           </Link>
         )}
-        <Button onClick={handleLogout} size="sm" variant="ghost" className="w-full flex items-center justify-between text-sm font-mukta">
+        <Button onClick={handleLogout} size="sm" variant="ghost" className="w-full flex items-center justify-between text-sm font-mukta dark:hover:bg-neutral-700/50">
           Logout
           <LockOpen className="size-4" />
         </Button>

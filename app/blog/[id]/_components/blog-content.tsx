@@ -11,6 +11,7 @@ import { FaLinkedin, FaSquareXTwitter, FaYCombinator } from "react-icons/fa6";
 import { RiHome3Line } from "react-icons/ri";
 import { ArrowRight } from "lucide-react";
 import BlogLoading from "./blog-loading";
+import Checkout from "@/components/stripe/checkout";
 
 function BlogContent({ blogId }: { blogId: string }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,6 +44,10 @@ function BlogContent({ blogId }: { blogId: string }) {
 
   if (isLoading) {
     return <BlogLoading />
+  }
+
+  if (!blog?.content) {
+    return <Checkout />
   }
 
   return (
