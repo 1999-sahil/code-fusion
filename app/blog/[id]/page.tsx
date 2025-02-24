@@ -11,9 +11,12 @@ import { format } from "date-fns";
 import Image from "next/image";
 import BlogContent from "./_components/blog-content";
 
-async function page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { id: string } }) {
+
+  const { id } = await params;
+  
   const { data: blog } = (await fetch(
-    process.env.SITE_URL + "/api/blog?id=" + params.id
+    process.env.NEXT_PUBLIC_SITE_URL + "/api/blog?id=" + id
   ).then((res) => res.json())) as { data: IBlog };
 
   if (!blog?.id) {
@@ -76,4 +79,3 @@ async function page({ params }: { params: { id: string } }) {
   );
 }
 
-export default page;

@@ -10,7 +10,7 @@ import { useUser } from '@/lib/store/user'
 import { checkout } from '@/lib/actions/stripe';
 import { createClient } from '@/utils/supabase/client';
 
-import { Check, Lock } from 'lucide-react'
+import { Check, LoaderCircle, Lock } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa';
 
 function Checkout() {
@@ -120,10 +120,13 @@ function Checkout() {
         <p className='text-xs font-outfit mb-5 text-[#111] dark:text-neutral-300'>
           For premium membership. Unlock all journal contents and code blocks.
         </p>
-        <button onClick={handleCheckout} className='w-full text-center rounded-md py-1.5 font-inter text-sm border border-[hsl(155_78%_40%)] hover:opacity-90 bg-[hsl(151_67%_67%)] dark:bg-[hsl(155_100%_19%)] text-[#111] dark:text-[hsl(0_0%_98%)]'>
-          Upgrade now
+        <button onClick={handleCheckout} className='w-full text-center rounded-md py-1.5 font-inter text-xs border border-[hsl(155_78%_40%)] hover:opacity-90 bg-[hsl(151_67%_67%)] dark:bg-[hsl(155_100%_19%)] text-[#111] dark:text-[hsl(0_0%_98%)]'>
+          {isPending ? <h2 className='flex items-center justify-center text-center gap-2'>
+            <LoaderCircle className='size-3 animate-spin' />
+            Redirecting to Stripe Payment
+          </h2> : <h2>Upgrade now</h2>}
         </button>
-      </div>  
+      </div>
     </div>
   )
 }
