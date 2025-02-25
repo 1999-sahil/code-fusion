@@ -60,6 +60,9 @@ async function BlogTable() {
           );
         })}
       </div>
+      <div className="my-3">
+        <h2 className="text-xs font-poppins text-neutral-700 dark:text-neutral-300">Total: {blogs?.length} blogs</h2>
+      </div>
     </div>
   );
 }

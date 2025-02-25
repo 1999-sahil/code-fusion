@@ -14,7 +14,7 @@ function NavComponents() {
                 <div className='flex items-center gap-1 md:gap-2 overflow-hidden'>
                     {/** free */}
                     <div className='flex items-center text-nowrap gap-1 md:gap-2 cursor-pointer hover:bg-neutral-200/60 dark:hover:bg-neutral-700/50 rounded-md px-3 py-[2px]'>
-                      <span className='text-xs font-medium font-inter dark:text-neutral-200'>{user?.user_metadata?.user_name}</span>
+                      <span className='text-xs font-medium font-inter dark:text-neutral-200'>{user?.display_name}</span>
                       <span className='text-xs font-inter border border-neutral-300 dark:border-neutral-500 dark:text-neutral-400 rounded-full px-2.5 py-[2px]'>Free</span>
                     </div>
 
@@ -23,7 +23,7 @@ function NavComponents() {
                     {/** dashboard */}
                     <div className='flex items-center text-nowrap gap-1 md:gap-2 cursor-pointer hover:bg-neutral-200/60 dark:hover:bg-neutral-700/50 rounded-md px-3 py-1'>
                       <span className='text-xs font-medium font-inter dark:text-neutral-200'>
-                        {user?.user_metadata?.user_name}{" "}
+                        {user?.display_name}{" "}
                         Dashboard
                       </span>
                       <ChevronsUpDown className='size-3 text-neutral-500 dark:text-neutral-400' />

@@ -11,22 +11,22 @@ export const config = {
 }
 
 export async function POST(request: Request) {
-  console.log("🔔 Webhook received");
+  //console.log("🔔 Webhook received");
 
   // Read the raw body as an ArrayBuffer
   const rawBodyBuffer = await request.arrayBuffer();
   const rawBody = Buffer.from(rawBodyBuffer).toString("utf-8");
 
-  console.log("Raw Body Length:", rawBody.length);
-  console.log("Raw Body Content:", rawBody);
+  //console.log("Raw Body Length:", rawBody.length);
+  //console.log("Raw Body Content:", rawBody);
 
   let event;
 
   try {
     const signature = request.headers.get("stripe-signature");
 
-    console.log("🔍 Stripe signature received:", signature);
-    console.log("🔑 Expected secret:", endpointSecret);
+    //console.log("🔍 Stripe signature received:", signature);
+    //console.log("🔑 Expected secret:", endpointSecret);
 
     if (!signature) {
       throw new NextResponse("Missing Stripe signature", { status: 400 });
@@ -34,11 +34,11 @@ export async function POST(request: Request) {
 
     event = stripe.webhooks.constructEvent(rawBody, signature!, endpointSecret);
   } catch (err) {
-    console.error("❌ Webhook signature verification failed:", err);
+    //console.error("❌ Webhook signature verification failed:", err);
     return new NextResponse("Invalid signature", { status: 400 });
   }
 
-  console.log("✅ Event received:", event.type);
+  //console.log("✅ Event received:", event.type);
 
   // handle the event
   switch (event.type) {
@@ -51,22 +51,37 @@ export async function POST(request: Request) {
       if (subscription.data.length) {
         const sub = subscription.data[0];
 
-        // call to supabase to update user table
-        console.log("✅ Calling onSuccess()...");
+        // call to supabase to update user subscription status to true
+        //console.log("✅ Calling onSuccess()...");
         const { error } = await onSuccessSubscription(
           sub.status === "active",
           sub.id,
           customer.id,
           customer.email!,
         );
-        console.log("✅ Calling onSuccess() completed...");
+        //console.log("✅ Calling onSuccess() completed...");
 
         if (error?.message) {
-          console.error("Supabase update error:", error?.message)
-          return Response.json({ error: error?.message });
+          //console.error("Supabase subscription error:", error?.message)
+          return Response.json({ error: "Unable to subscribe " + error?.message });
         }
       }  
       break;
+
+      case "customer.subscription.deleted":
+        const deleteSubscription = event.data.object;
+
+        // call to supabase to update user subscription status to false
+        const { error } = await onCancelSubscription(
+          false,
+          deleteSubscription.id,
+        );  
+        
+        if (error?.message) {
+          //console.error("Supabase unsubscription error:", error?.message)
+          return Response.json({ error: "Failed to cancel subscription " + error?.message });
+        }
+        break;
     
     default:
       console.log(`Unhandled event type ${event.type}`);
@@ -77,14 +92,14 @@ export async function POST(request: Request) {
 }
 
 
-// function to update user on subscription
+// function to update/subscribe user on subscription
 const onSuccessSubscription = async (
   subscription_status: boolean,
   stripe_subscription_id: string,
   stripe_customer_id: string,
   email: string
 ) => {
-  console.log("Update supbase users...")
+  //console.log("Update supbase users...")
   const supabaseAdmin = await createSupabaseAdmin();
 
   return await supabaseAdmin
@@ -95,4 +110,21 @@ const onSuccessSubscription = async (
       stripe_customer_id,
     })
     .eq("email", email);
+};
+
+// function to unsubscribe user on subscription
+const onCancelSubscription = async (
+  subscription_status: boolean,
+  stripe_subscription_id: string,
+) => {
+  const supabaseAdmin = await createSupabaseAdmin();
+
+  return await supabaseAdmin
+    .from("users")
+    .update({
+      subscription_status,
+      stripe_subscription_id: null,
+      stripe_customer_id: null,
+    })
+    .eq("stripe_subscription_id", stripe_subscription_id);
 };

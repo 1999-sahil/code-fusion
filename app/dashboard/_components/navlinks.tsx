@@ -29,7 +29,7 @@ function Navlinks() {
     },
     {
       href: "/dashboard/user",
-      text: "user",
+      text: "users",
     },
   ];
 

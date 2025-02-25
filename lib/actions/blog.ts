@@ -121,3 +121,13 @@ export async function updateBlogDetailsById(blogId: string, data: BlogFormSchema
     return JSON.stringify(result);
   }
 }
+
+// function to get all users from database
+export async function getAllUsers() {
+  const supabase = await createSupabaseServerClient();
+
+  return supabase
+    .from("users")
+    .select("*")
+    .order("created_at", { ascending: true });
+}
