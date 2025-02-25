@@ -12,7 +12,8 @@ async function UserTable() {
 
   return (
     <div className="my-7 mx-5">
-      <div className="w-full border rounded-lg bg-gradient-to-r from-neutral-100 to-neutral-100/80 dark:from-neutral-800/90 dark:to-neutral-800/80">
+    <div className="w-full overflow-x-auto">
+      <div className="w-full min-w-max border rounded-lg bg-gradient-to-r from-neutral-100 to-neutral-100/80 dark:from-neutral-800/90 dark:to-neutral-800/80">
         {/** Table Heading */}
         <div className="grid grid-cols-9 md:grid-cols-11 py-3 lg:py-4 font-inter text-xs font-medium border-b border-neutral-200 dark:border-neutral-700/50 bg-neutral-200/40 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-400">
           <h1></h1>
@@ -43,10 +44,10 @@ async function UserTable() {
                   className="rounded-full ring-1 p-[2px] ring-neutral-300 dark:ring-neutral-700"
                 />
               </div>
-              <h1 className="col-span-2 max-md:hidden font-mono text-neutral-600 dark:text-neutral-400">{user?.id}</h1>
+              <h1 className="col-span-2 max-md:hidden lg:pr-3 font-mono text-neutral-600 dark:text-neutral-400">{user?.id}</h1>
               <h1 className="font-inter">{user?.display_name}</h1>
-              <h1 className="col-span-2 font-inter">{user?.email}</h1>
-              <h1 className="flex items-center gap-1 font-inter">
+              <h1 className="col-span-2 font-inter pr-3">{user?.email}</h1>
+              <h1 className="flex gap-1 font-inter">
                 <FaGithub className="size-4 ring-1 ring-neutral-300 dark:ring-neutral-700 rounded-full p-[1px]" />
                 Github
               </h1>
@@ -69,7 +70,7 @@ async function UserTable() {
                 )}
               </div>
 
-              <h1 className="col-span-2 font-inter">
+              <h1 className="col-span-2 font-inter text-[10px]">
                 {format(user?.created_at, "MMMM dd, yyyy hh:mm a")}
               </h1>
             </div>
@@ -78,6 +79,7 @@ async function UserTable() {
       </div>
       <div className="my-3">
         <h2 className="text-xs font-poppins text-neutral-700 dark:text-neutral-300">Total: {users?.length} users</h2>
+      </div>
       </div>
     </div>
   );
