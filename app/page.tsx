@@ -91,7 +91,7 @@ export default function Home() {
             </div>
 
             {/** marquee motion */}
-            <div className="relative py-20 lg:py-24 w-full h-full flex items-center justify-center border-b">
+            <div className="relative overflow-hidden py-20 lg:py-24 w-full h-full flex items-center justify-center border-b">
               <Marquee />
             </div>
 

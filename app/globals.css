@@ -89,6 +89,11 @@ dark-bg-color: #1a1a1a,
   );
 }
 
+/* Apply this filter to change the image color to #7e7e7e */
+.image-color {
+  filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(100%) hue-rotate(0deg) brightness(90%) contrast(90%);
+}
+
 /* Apply hyphen before list item content only in unordered lists */
 .custom-ul > li::before {
   content: "-";

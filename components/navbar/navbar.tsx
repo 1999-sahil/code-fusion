@@ -56,7 +56,6 @@ function Navbar() {
           <div className="md:hidden">
             <div className="flex items-center gap-1">
               {user?.id ? <Profile /> : <Login />}
-              <ModeToggle />
               <div
                 className="hover:bg-accent hover:text-accent-foreground p-1 rounded-md"
                 onClick={toggleMenu}
@@ -75,13 +74,9 @@ function Navbar() {
       {/* Overlay and MobileNav */}
       {open && (
         <>
-          {/* Blur background */}
-          <div className="fixed inset-0 backdrop-blur-sm z-40 border-b" onClick={toggleMenu}></div>
           {/* MobileNav */}
-          <div className="fixed top-[62px] left-0 w-full backdrop-blur z-50">
-            <div className="py-5">
-              <MobileNav />
-            </div>
+          <div className="fixed w-full h-full min-h-screen bg-neutral-50 dark:bg-neutral-900 z-50">
+            <MobileNav />
           </div>
         </>
       )}
