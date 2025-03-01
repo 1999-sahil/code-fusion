@@ -26,13 +26,13 @@ export default function Home() {
               </span>
               <h1 className="text-2xl lg:text-4xl max-w-lg lg:max-w-2xl font-poppins font-medium text-[#111] dark:text-neutral-200">
                 Empowering the new dimension of learning with our comprehensive
-                docs and blogs
+                docs and journals
               </h1>
             </div>
             <p className="text-sm lg:text-base font-inter max-w-xl lg:max-w-2xl text-neutral-500 dark:text-neutral-400">
               Codefusion is a <strong>beautiful & robust</strong> documentation
               to learn <strong>engineering</strong>. Unlocking Potential,
-              Igniting <strong>curiosity</strong>, Explore #Codefusion mdx blogs
+              Igniting <strong>curiosity</strong>, Explore #Codefusion markdown journals to gain full knowledge.
             </p>
             <div className="w-full flex items-center gap-3 lg:gap-5">
               <Link href="">

@@ -14,7 +14,7 @@ export const navLinks = [
         href: "/playground"
     },
     {
-        title: "CF Blog",
+        title: "Journals",
         href: "/journals"
     },
 ];
@@ -37,7 +37,7 @@ export const mobileNavLinks = [
     },
     {
         icon: Blocks,
-        title: "CF Blog",
+        title: "Journals",
         href: "/journals",
     },
 ];

@@ -1,10 +1,23 @@
-import { Check, LassoSelect } from 'lucide-react';
+"use client";
+
+import { LassoSelect } from 'lucide-react';
 import { useTheme } from 'next-themes'
 import Image from 'next/image';
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 function Design() {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Ensure the component is mounted before rendering the theme-dependent content
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    // Render a fallback or nothing until the component is mounted
+    return null;
+  }
 
   return (
     <div className="w-full h-full overflow-hidden relative border rounded-lg shadow p-5 flex flex-col justify-between">

@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* path of `fumadocs-ui` relative to the CSS file */
+@source '../node_modules/fumadocs-ui/dist/**/*.js';
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }

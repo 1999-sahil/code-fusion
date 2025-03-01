@@ -1,10 +1,23 @@
+"use client";
+
+import Image from "next/image";
+import React, { useState, useEffect } from "react";
 import { LoaderCircle, Proportions } from "lucide-react";
 import { useTheme } from "next-themes";
-import Image from "next/image";
-import React from "react";
 
 function UserInterface() {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Ensure the component is mounted before rendering the theme-dependent content
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    // Render a fallback or nothing until the component is mounted
+    return null;
+  }
 
   return (
     <div className="w-full h-full relative overflow-hidden border rounded-lg shadow p-5 flex flex-col justify-between">
