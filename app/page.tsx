@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Hash, Terminal } from "lucide-react";
 
 import MainContent from "@/components/main-content";
@@ -8,7 +9,6 @@ import CFButton from "@/components/cf-button";
 import Button from "@/components/button";
 import BlogGrid from "@/components/blog-grid";
 import TopicsGrid from "@/components/topics-grid";
-import Link from "next/link";
 import Footer from "@/components/footer";
 
 export default function Home() {
@@ -47,7 +47,7 @@ export default function Home() {
               </Link>
               <Link href="">
                 <button className="text-xs lg:text-sm font-medium font-poppins rounded-full px-4 py-2 shadow-md border border-[hsl(155_78%_40%)] hover:opacity-90 bg-[hsl(151_67%_67%)] dark:bg-[hsl(155_100%_19%)] text-[hsl(0_0%_9%)] dark:text-[hsl(0_0%_98%)]">
-                  🚀 CF Blogs
+                  🚀 CF Journals
                 </button>
               </Link>
             </div>

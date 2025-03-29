@@ -4,45 +4,27 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-{/*
 const data = [
-  "/marquees/nextjs.svg",
-  "/marquees/github.svg",
-  "/marquees/npm.svg",
-  "/marquees/reactjs.svg",
-  "/marquees/js.svg",
-  "/marquees/ts.svg",
-  "/marquees/nodejs.svg",
-  "/marquees/git.svg",
-  "/marquees/vercel.svg",
   "/marquees/angular.svg",
   "/marquees/docker.svg",
-  "/marquees/mongodb.svg",
+  "/marquees/express.svg",
+  "/marquees/github.svg",
+  "/marquees/git.svg",
+  "/marquees/mongo.svg",
   "/marquees/sql.svg",
-  "/marquees/vuejs.svg"
-];  
-*/}
-
-const data = [
-  "/motion/angularjs.png",
-  "/motion/dockerjs.png",
-  "/motion/github.png",
-  "/motion/gitjs.png",
-  "/motion/mongo.png",
-  "/motion/sql.png",
-  "/motion/next.png",
-  "/motion/node.png",
-  "/motion/npmjs.png",
-  "/motion/reactjs.png",
-  "/motion/tsjs.png",
-  "/motion/verceljs.png",
-  "/motion/vue.png",
+  "/marquees/next.svg",
+  "/marquees/node.svg",
+  "/marquees/npm.svg",
+  "/marquees/react.svg",
+  "/marquees/typescript.svg",
+  "/marquees/vercel.svg",
 ]
 
 function Marquee() {
   return (
-    <div className="container flex flex-col items-center justify-center mx-auto">
+    <div className="container flex flex-col items-center justify-center gap-5 md:gap-8 mx-auto">
       <MarqueeItem images={data} from={0} to={"-100%"} />
+      <MarqueeItem images={data} from={"-100%"} to={0} />
     </div>
   );
 }
@@ -61,8 +43,8 @@ const MarqueeItem = ({ images, from, to}: MarqueeProps) => {
       <motion.div
         initial={{ x: `${from}` }}
         animate={{ x: `${to}` }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="flex flex-shrink-0 gap-6 lg:gap-10"
+        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        className="flex flex-shrink-0 gap-12 lg:gap-16"
       >
         {images.map((item, index) => (
           <Image
@@ -71,7 +53,7 @@ const MarqueeItem = ({ images, from, to}: MarqueeProps) => {
             key={index}
             width={80}
             height={80}
-            className="aspect-video mix-blend-color-burn image-color"
+            className="w-[50px] h-[50px] md:w-[70px] md:h-[70px]"
           />
         ))}
       </motion.div>
@@ -79,8 +61,8 @@ const MarqueeItem = ({ images, from, to}: MarqueeProps) => {
       <motion.div
         initial={{ x: `${from}` }}
         animate={{ x: `${to}` }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="flex flex-shrink-0 gap-6 lg:gap-10"
+        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        className="flex flex-shrink-0 gap-12 lg:gap-16"
       >
         {images.map((item, index) => (
           <Image
@@ -89,7 +71,7 @@ const MarqueeItem = ({ images, from, to}: MarqueeProps) => {
             key={index}
             width={80}
             height={80}
-            className="aspect-video mix-blend-color-burn image-color"
+            className="w-[50px] h-[50px] md:w-[70px] md:h-[70px]"
           />
         ))}
       </motion.div>

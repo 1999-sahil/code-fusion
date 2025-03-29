@@ -11,6 +11,42 @@ import { format } from "date-fns";
 import Image from "next/image";
 import BlogContent from "./_components/blog-content";
 
+// ----- FOR SEO (STARTS HERE) ----- //
+
+// export async function generateStaticParams() {
+//   const { data: blog } = (await fetch(
+//     process.env.NEXT_PUBLIC_SITE_URL + "/api/blog?id=" + "*"
+//   ).then((res) => res.json())) as { data: IBlog };
+
+//   return blog;
+// }
+
+// export async function generateMetadata({ params }: { params: { id: string } }) {
+//   const { id } = await params;
+
+//   const { data: blog } = (await fetch(
+//     process.env.NEXT_PUBLIC_SITE_URL + "/api/blog?id=" + id
+//   ).then((res) => res.json())) as { data: IBlog };
+
+//   return {
+//     title: blog?.title,
+//     authors: {
+//       name: "CodeFusion and Teams"
+//     },
+//     openGraph: {
+//       title: blog?.title,
+//       url: process.env.NEXT_PUBLIC_SITE_URL+"/blog/"+params.id,
+//       sitename: "CodeFusion",
+//       images: blog?.image_url,
+//       type: "website",
+//     },
+//     keywords: ["CodeFusion", "Blogs", "Codefusion blogs", "Web blogs", "Code blogs", "Coding", "Learn", "Free blogs"]
+//   }
+
+// }
+
+// ----- FOR SEO (ENDS HERE) ----- //
+
 export default async function Page({ params }: { params: { id: string } }) {
 
   const { id } = await params;
