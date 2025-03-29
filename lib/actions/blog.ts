@@ -4,6 +4,7 @@ import { BlogFormSchemaType } from "@/app/dashboard/schema";
 import { createSupabaseServerClient } from "@/utils/supabase";
 import { revalidatePath, unstable_noStore } from "next/cache";
 import { IBlog } from "@/lib/types";
+import { PostgrestError } from "@supabase/supabase-js";
 
 const DASHBOARD = "/dashboard";
 
@@ -74,7 +75,7 @@ export async function createBlog(data: BlogFormSchemaType) {
 //     .range(offset, offset + limit - 1);
 // }
 
-export async function readBlog(offset = 0, limit = 15): Promise<{ data: IBlog[]; error: any }> {
+export async function readBlog(offset = 0, limit = 15): Promise<{ data: IBlog[]; error: PostgrestError | null }> {
   const supabase = await createSupabaseServerClient();
 
   const { data, error } = await supabase
