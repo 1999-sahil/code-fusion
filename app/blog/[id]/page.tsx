@@ -47,17 +47,8 @@ import BlogContent from "./_components/blog-content";
 
 // ----- FOR SEO (ENDS HERE) ----- //
 
-// Define correct props type
-interface PageProps {
-  params: {
-    id: string;
-  };
-  searchParams?: {
-    [key: string]: string | string[] | undefined;
-  };
-}
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: { params: { id: string } }) {
   //console.log("PageProps", params)
 
   const { id } = params;
