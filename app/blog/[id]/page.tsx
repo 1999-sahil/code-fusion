@@ -49,7 +49,7 @@ import BlogContent from "./_components/blog-content";
 
 export default async function Page({ params }: { params: { id: string } }) {
 
-  const { id } = await params;
+  const { id } = params;
   
   const { data: blog } = (await fetch(
     process.env.NEXT_PUBLIC_SITE_URL + "/api/blog?id=" + id
