@@ -48,15 +48,13 @@ import BlogContent from "./_components/blog-content";
 // ----- FOR SEO (ENDS HERE) ----- //
 
 
-export default async function Page({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function Page(props: Promise<{ params: { id: string } }>) {
   //const { id } = params;
+  const { params } = await props;
+  const { id } = params;
   
   const { data: blog } = (await fetch(
-    process.env.NEXT_PUBLIC_SITE_URL + "/api/blog?id=" + params.id
+    process.env.NEXT_PUBLIC_SITE_URL + "/api/blog?id=" + id
   ).then((res) => res.json())) as { data: IBlog };
 
   if (!blog?.id) {
