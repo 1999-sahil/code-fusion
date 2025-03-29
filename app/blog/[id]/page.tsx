@@ -52,12 +52,11 @@ export default async function Page({
   params,
 }: {
   params: { id: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const { id } = params;
+  //const { id } = params;
   
   const { data: blog } = (await fetch(
-    process.env.NEXT_PUBLIC_SITE_URL + "/api/blog?id=" + id
+    process.env.NEXT_PUBLIC_SITE_URL + "/api/blog?id=" + params.id
   ).then((res) => res.json())) as { data: IBlog };
 
   if (!blog?.id) {
