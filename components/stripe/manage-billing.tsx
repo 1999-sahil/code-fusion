@@ -15,17 +15,24 @@ function ManageBilling() {
 
   const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
-    if (!user?.stripe_customer_id) return;
-
+  
+    const customerId = user?.stripe_customer_id;
+    if (!customerId) return; // Safe check before using it
+  
     startTransition(async () => {
-        const data = JSON.parse(
-          await manageBilling(user?.stripe_customer_id!)
-        );
-
-        window.location.href = data.url;
+      const response = await manageBilling(customerId);
+      
+      try {
+        const data = JSON.parse(response);
+        if (data?.url) {
+          window.location.href = data.url;
+        }
+      } catch (error) {
+        console.error("Failed to parse billing response:", error);
+      }
     });
-  }
+  };
+  
 
   return (
     <Button

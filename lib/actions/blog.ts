@@ -145,7 +145,7 @@ export async function editBlogById(blogId: string) {
 export async function updateBlogDetailsById(blogId: string, data: BlogFormSchemaType) {
   const supabase = await createSupabaseServerClient();
 
-  const { content, ...blog } = data;
+  const { ...blog } = data;
 
   const resultBlog = await supabase
     .from("blog")
