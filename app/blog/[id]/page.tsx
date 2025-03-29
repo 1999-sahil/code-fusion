@@ -47,10 +47,12 @@ import BlogContent from "./_components/blog-content";
 
 // ----- FOR SEO (ENDS HERE) ----- //
 
+interface BlogPageProps {
+  params: { id: string };
+}
 
-export default async function Page(props: Promise<{ params: { id: string } }>) {
-  //const { id } = params;
-  const { params } = await props;
+export default async function Page({ params }: BlogPageProps) {
+  
   const { id } = params;
   
   const { data: blog } = (await fetch(
