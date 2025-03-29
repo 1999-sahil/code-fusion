@@ -3,14 +3,43 @@
 import { BlogFormSchemaType } from "@/app/dashboard/schema";
 import { createSupabaseServerClient } from "@/utils/supabase";
 import { revalidatePath, unstable_noStore } from "next/cache";
+import { IBlog } from "@/lib/types";
 
 const DASHBOARD = "/dashboard";
 
 // create blog and save it to database
-export async function createBlog(data: BlogFormSchemaType) {
-  const { ["content"]: excludeKey, ...blog } = data;
+// export async function createBlog(data: BlogFormSchemaType) {
+//   const { content, ...blog } = data;
 
-  const supabase =  await createSupabaseServerClient();
+//   const supabase =  await createSupabaseServerClient();
+
+//   const blogResult = await supabase
+//     .from("blog")
+//     .insert(blog)
+//     .select("id")
+//     .single();
+
+//   if (blogResult.error?.message) {
+//     return JSON.stringify(blogResult);
+//   } else {
+//     if (!blogResult.data?.id) {
+//       return JSON.stringify({ error: "Blog creation failed: Missing blog ID." });
+//     }
+
+//     const result = await supabase.from("blog_content").insert({
+//       blog_id: blogResult?.data?.id!,
+//       content: data.content,
+//     });
+
+//     revalidatePath(DASHBOARD);
+//     return JSON.stringify(result);
+//   }
+// }
+
+export async function createBlog(data: BlogFormSchemaType) {
+  const { content, ...blog } = data;
+
+  const supabase = await createSupabaseServerClient();
 
   const blogResult = await supabase
     .from("blog")
@@ -18,31 +47,45 @@ export async function createBlog(data: BlogFormSchemaType) {
     .select("id")
     .single();
 
-  if (blogResult.error?.message) {
-    return JSON.stringify(blogResult);
-  } else {
-    const result = await supabase.from("blog_content").insert({
-      blog_id: blogResult?.data?.id!,
-      content: data.content,
-    });
-
-    revalidatePath(DASHBOARD);
-    return JSON.stringify(result);
+  if (!blogResult.data?.id) {
+    return JSON.stringify({ error: "Blog creation failed: Missing blog ID." });
   }
+
+  const result = await supabase.from("blog_content").insert({
+    blog_id: blogResult.data.id,
+    content: content,
+  });
+
+  revalidatePath(DASHBOARD);
+  return JSON.stringify(result);
 }
+
 
 
 // for both (USERS and ADMIN) read blogs from database and show it to the blog (journal) home page
-export async function readBlog(offset = 0, limit = 15) {
-  const supabase =  await createSupabaseServerClient();
+// export async function readBlog(offset = 0, limit = 15) {
+//   const supabase =  await createSupabaseServerClient();
 
-  return supabase
+//   return supabase
+//     .from("blog")
+//     .select("*")
+//     //.eq("is_published", true)  // user will see only published articles
+//     .order("created_at", { ascending: true })
+//     .range(offset, offset + limit - 1);
+// }
+
+export async function readBlog(offset = 0, limit = 15): Promise<{ data: IBlog[]; error: any }> {
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase
     .from("blog")
     .select("*")
-    //.eq("is_published", true)  // user will see only published articles
     .order("created_at", { ascending: true })
     .range(offset, offset + limit - 1);
+
+  return { data: data as IBlog[], error };
 }
+
 
 // for ADMIN: read blogs from database and fill it to blog-table
 export async function readBlogAdmin() {
@@ -101,7 +144,7 @@ export async function editBlogById(blogId: string) {
 export async function updateBlogDetailsById(blogId: string, data: BlogFormSchemaType) {
   const supabase = await createSupabaseServerClient();
 
-  const { ["content"]: excludeKey, ...blog } = data;
+  const { content, ...blog } = data;
 
   const resultBlog = await supabase
     .from("blog")

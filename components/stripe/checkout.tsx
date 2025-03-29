@@ -29,16 +29,23 @@ function Checkout() {
       });
     };
 
-  const handleCheckout = (e: any) => {
+  const handleCheckout = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    startTransition(async () => {
-      const data = JSON.parse(
-        await checkout(user?.email!, location.origin + pathname)
-      );
+    if (!user?.email) return;
 
-      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
-      await stripe?.redirectToCheckout({ sessionId: data.id });
-    })
+    startTransition(async () => {
+      try {
+        const data = JSON.parse(await checkout(user.email, location.origin + pathname));
+        const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
+        if (stripe) {
+          await stripe.redirectToCheckout({ sessionId: data.id });
+        } else {
+          console.error("Failed to load Stripe.");
+        }
+      } catch (error) {
+        console.error("Checkout failed:", error);
+      }
+    });
   };
 
   if (!user?.id) {
@@ -52,7 +59,7 @@ function Checkout() {
             The author made this journal available to CodeFusion members only.
           </p>
           <p className='font-raleway font-normal text-xs lg:text-sm text-center dark:text-neutral-300'>
-            If you're new to CodeFusion, create a new account to read this journal on us.
+            If you&apos;re new to CodeFusion, create a new account to read this journal on us.
           </p>
         </span>
         <button onClick={handleLogin} className='flex items-center justify-center gap-2 border rounded-md py-1.5 w-full md:w-1/2 font-inter text-sm bg-neutral-200/50 dark:bg-neutral-800/50 border-neutral-200 dark:border-neutral-700/50 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:border-neutral-200 dark:hover:border-neutral-700'>
@@ -77,7 +84,7 @@ function Checkout() {
           Become a member to read this journal, and all of CodeFusion, starting at <span className='w-fit p-1 rounded-[2px] text-base font-inter bg-emerald-300 dark:bg-emerald-700'>$5/month</span>.
         </h2>
         <p className='font-raleway font-normal text-xs lg:text-sm text-center dark:text-neutral-300'>
-          This journal is put behind our paywall, so it's only available to read with a paid CodeFusion membership, which comes with a host of benefits:
+          This journal is put behind our paywall, so it&apos;s only available to read with a paid CodeFusion membership, which comes with a host of benefits:
         </p>
 
         <div className='w-full my-5 h-[1px] bg-neutral-200 dark:bg-neutral-700'></div>

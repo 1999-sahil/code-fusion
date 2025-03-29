@@ -15,7 +15,13 @@ function EditForm({ blog }: { blog: IBlogDetail }) {
     const router = useRouter();
 
     const handleEdit = async (data: BlogFormSchemaType) => {
-      const result = await updateBlogDetailsById(blog?.id!, data);
+      if (!blog?.id) {
+        toast({ title: "Error: Blog ID is missing." });
+        return;
+      }
+      
+      const result = await updateBlogDetailsById(blog.id, data);
+      
       const { error } = JSON.parse(result);
   
       if (error?.message) {

@@ -25,7 +25,7 @@ function UserInterface() {
         {/** title and icon */}
         <div className="flex items-center gap-2 ">
           <Proportions className="size-3.5 md:size-4 text-neutral-700 dark:text-neutral-300" />
-          <h2 className="font-medium font-poppins text-sm text-[#333] dark:text-neutral-100">Beautiful UI's</h2>
+          <h2 className="font-medium font-poppins text-sm text-[#333] dark:text-neutral-100">Beautiful UI&apos;s</h2>
         </div>
 
         {/** description */}

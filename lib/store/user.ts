@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import { User } from '@supabase/supabase-js'
 import { IUser } from '../types';
 
 interface UserState {

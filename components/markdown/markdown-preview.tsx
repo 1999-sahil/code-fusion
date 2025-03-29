@@ -29,7 +29,7 @@ function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
           className
         )}
         components={{
-          h1: ({ node, ...props }) => {
+          h1: ({ ...props }) => {
             return (
               <h1
                 {...props}
@@ -37,7 +37,7 @@ function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
               />
             );
           },
-          h2: ({ node, ...props }) => {
+          h2: ({ ...props }) => {
             return (
               <h1
                 {...props}
@@ -45,7 +45,7 @@ function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
               />
             );
           },
-          h3: ({ node, ...props }) => {
+          h3: ({ ...props }) => {
             return (
               <h1
                 {...props}
@@ -53,52 +53,52 @@ function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
               />
             );
           },
-          blockquote: ({ node, ...props }) => (
+          blockquote: ({ ...props }) => (
             <blockquote {...props} className="border-l-4 border-neutral-300 dark:border-neutral-700 pl-4 text-[#111] dark:text-neutral-100 font-mono text-sm font-medium" />
           ),
-          ul: ({ node, ...props }) => (
+          ul: ({ ...props }) => (
             <ul {...props} className="list-none custom-ul" />
           ),
-          ol: ({ node, ...props }) => (
+          ol: ({ ...props }) => (
             <ol {...props} className="list-none custom-ol" />
           ),
-          li: ({ node, ...props }) => (
+          li: ({ ...props }) => (
             <li
               {...props}
               className="relative pl-5 my-4"
             />
           ),
-          em: ({ node, ...props }) => (
+          em: ({ ...props }) => (
             <em {...props} className="italic font-inter text-neutral-500 dark:text-neutral-200" />
           ),
-          strong: ({ node, ...props }) => (
+          strong: ({ ...props }) => (
             <strong {...props} className="font-bold font-inter text-[#333] dark:text-neutral-200" />
           ),
-          table: ({ node, ...props }) => (
+          table: ({ ...props }) => (
             <table {...props} className="border-separate border-spacing-1 border border-neutral-300 dark:border-neutral-700 rounded-md w-full overflow-hidden" />
           ),
-          thead: ({ node, ...props }) => (
+          thead: ({ ...props }) => (
             <thead {...props} className="bg-neutral-200/50 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 rounded" />
           ),
-          tbody: ({ node, ...props }) => (
+          tbody: ({ ...props }) => (
             <tbody {...props} className="text-gray-700 dark:text-gray-300 bg-transparent" />
           ),
-          tr: ({ node, ...props }) => (
+          tr: ({ ...props }) => (
             <tr {...props} className="border-b border-neutral-300 dark:border-neutral-700" />
           ),
-          th: ({ node, ...props }) => (
+          th: ({ ...props }) => (
             <th {...props} className="py-2 px-4 rounded font-raleway text-left text-xs border border-neutral-300 dark:border-neutral-700 font-medium" />
           ),
-          td: ({ node, ...props }) => (
+          td: ({ ...props }) => (
             <td {...props} className="py-2 px-4 rounded text-sm font-inter text-[#111] dark:text-neutral-100 border border-neutral-300 dark:border-neutral-700" />
           ),
-          a: ({ node, href, ...props }) => (
+          a: ({ href, ...props }) => (
             <Link href={href || "#"} {...props} className="text-[#111] dark:text-neutral-50 underline underline-offset-2 decoration-neutral-500 dark:decoration-neutral-500 hover:decoration-black dark:hover:decoration-white font-inter" />
           ),
-          img: ({ node, ...props }) => (
+          img: ({ ...props }) => (
             <img {...props} className="rounded-lg m-auto w-full h-full border dark:border-neutral-700/50 p-1 my-6 lg:my-10" alt="" />
           ),
-          code: ({ node, className, children, ...props }) => {
+          code: ({ node, className, children }) => {
             const match = /language-(\w+)/.exec(className || "");
 
             if (match?.length) {
@@ -121,10 +121,7 @@ function MarkdownPreview({ content, className }: MarkdownPreviewProps) {
                     <div className="flex items-center gap-3">
                       <Icon className="size-4 text-neutral-500/80 dark:text-neutral-400" />
                       <span className="font-mono text-sm text-neutral-500/80 dark:text-neutral-400 font-medium">
-                        {
-                          // @ts-ignore
-                          node?.data?.meta
-                        }
+                        {node?.data?.meta}
                       </span>
                     </div>
                     <CopyButton id={id} />

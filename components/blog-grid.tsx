@@ -1,9 +1,6 @@
 import React from "react";
 import Image from "next/image";
 
-import { blogs } from "@/constant/blog-card";
-import { Calendar } from "lucide-react";
-
 function BlogGrid() {
   return (
     <div>
@@ -233,7 +230,7 @@ function BlogGrid() {
             {/** title and desc */}
             <div className="space-y-2">
               <h1 className="font-inter font-medium text-[#111] dark:text-neutral-100">
-                Express.js Secrets That Senior Developers Don't Share
+                Express.js Secrets That Senior Developers Don&apos;t Share
               </h1>
               <p className="hidden lg:block text-sm font-mukta font-normal text-neutral-500 dark:text-neutral-400">
                 Express.js has been the backbone of Node.js web development for

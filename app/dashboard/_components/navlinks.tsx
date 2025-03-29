@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
 import { ChevronsUpDown, Search } from "lucide-react";
 
 import {
@@ -19,7 +17,6 @@ import {
 
 
 function Navlinks() {
-  const pathname = usePathname();
   const [selectedText, setSelectedText] = useState("Dashboard");
 
   const links = [

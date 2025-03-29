@@ -13,11 +13,14 @@ function ManageBilling() {
   const [isPending, startTransition] = useTransition();
   const user = useUser((state) => state.user);
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    if (!user?.stripe_customer_id) return;
+
     startTransition(async () => {
         const data = JSON.parse(
-            await manageBilling(user?.stripe_customer_id!)
+          await manageBilling(user?.stripe_customer_id!)
         );
 
         window.location.href = data.url;

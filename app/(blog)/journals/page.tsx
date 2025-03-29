@@ -12,11 +12,12 @@ import Search from "../_components/search";
 
 import { Filter, LoaderCircle } from "lucide-react";
 import { TbMenu } from "react-icons/tb";
+import { IBlog } from "@/lib/types";
 
 function Journals() {
   //const { data: blogs } = await readBlog();
 
-  const [blogs, setBlogs] = useState<any[]>([]);
+  const [blogs, setBlogs] = useState<IBlog[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searchBlog, setSearchBlog] = useState("");
@@ -41,7 +42,7 @@ function Journals() {
         setBlogs((prev) => (pageNum === 0 ? data : [...prev, ...data])); // Append new blogs to existing list
         setPage(pageNum);
       }
-    } catch (err) {
+    } catch {
       setError("Failed to fetch blogs");
     } finally {
       setLoading(false);
@@ -54,10 +55,13 @@ function Journals() {
 
   // 🔍 Filter blogs based on search term
   const filteredBlogs = useMemo(() => {
-    return blogs.filter((blog) =>
-      blog.title.toLowerCase().includes(searchBlog.toLowerCase())
-    );
+    return blogs
+      .filter((blog): blog is NonNullable<IBlog> => blog !== null) // Ensure blog is not null
+      .filter((blog) =>
+        blog.title.toLowerCase().includes(searchBlog.toLowerCase())
+      );
   }, [blogs, searchBlog]);
+  
 
   if (loading)
     return (

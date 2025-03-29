@@ -1,6 +1,5 @@
-import { CircleStop, Layers2 } from 'lucide-react'
-import Image from 'next/image'
 import React from 'react'
+import { CircleStop, Layers2 } from 'lucide-react'
 
 function Backend() {
 
