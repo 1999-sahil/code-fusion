@@ -12,8 +12,10 @@ import { format } from "date-fns";
 import Image from "next/image";
 import BlogContent from "./_components/blog-content";
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const { id }: { id: string } = await params;
+export type paramsType = Promise<{ id: string }>;
+
+export default async function Page(props: { params: paramsType }) {
+  const { id } = await props.params;
   
   try {
     const { data: blog } = (await fetch(
