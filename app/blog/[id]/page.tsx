@@ -13,7 +13,7 @@ import Image from "next/image";
 import BlogContent from "./_components/blog-content";
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const { id } = params;
+  const { id }: { id: string } = await params;
   
   try {
     const { data: blog } = (await fetch(
