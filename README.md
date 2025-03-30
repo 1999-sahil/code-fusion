@@ -10,7 +10,7 @@ Codefusion is a beautiful & robust documentation to learn engineering. Unlocking
 The fastest way to get started with #Strife i sby following these steps.
 #### Step 1: Clone the git repository
 ```bash
-https://github.com/1999-sahil/strife-platform-repo.git
+https://github.com/1999-sahil/code-fusion.git
 ```
 #### Step 2: Install all dependencies or devDependencies
 ```bash
